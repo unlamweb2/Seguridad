@@ -14,15 +14,25 @@ public class UsuarioServiceImpl implements UsuarioService {
 	UsuarioDao usuarioDao;
 	
 	@Override
-	public void save(Usuario usuario) {
-		usuarioDao.save(usuario);
+	public void guardarUsuario(Usuario usuario) {
+		usuarioDao.guardarUsuario(usuario);
 	}
 
 	@Override
-	public List<Usuario> findAll() {
-		return usuarioDao.findAll();
+	public List<Usuario> listarUsuarios() {
+		return usuarioDao.listarUsuarios();
 	}
 
+	@Override
+	public void eliminarUsuario(Integer usuarioId) {
+		usuarioDao.eliminarUsuario(usuarioId);
+	}
+	
+	@Override
+	public Usuario buscarUsuario(String email, String password) {
+		return usuarioDao.buscarUsuario(email, password);
+	}
+	
 	public UsuarioDao getUsuarioDao() {
 		return usuarioDao;
 	}
@@ -31,6 +41,4 @@ public class UsuarioServiceImpl implements UsuarioService {
 		this.usuarioDao = usuarioDao;
 	}
 	
-	
-
 }

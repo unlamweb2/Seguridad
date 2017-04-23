@@ -23,10 +23,8 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	}
 
 	@Override
-	public void save(Usuario usuario) {
-
+	public void guardarUsuario(Usuario usuario) {
 		String sql = "INSERT INTO Usuarios (Nombre, Apellido, Email, Password, RolId, Activo, FechaAlta) VALUES (:nombre, :apellido, :email, :password, :rolId, :activo, :fechaAlta)";
-
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("nombre", usuario.getNombre());
 		params.put("apellido", usuario.getApellido());
@@ -36,18 +34,34 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		params.put("activo", usuario.getActivo());
 		params.put("fechaAlta", usuario.getFechaAlta());
 		jdbcTemplate.update(sql, params);
-
 	}
 
 	@Override
-	public List<Usuario> findAll() {
+	public List<Usuario> listarUsuarios() {
+		String sql = "SELECT * FROM Usuarios";
 		Map<String, Object> params = new HashMap<String, Object>();
-
-		String sql = "SELECT * FROM PERSON";
-
 		List<Usuario> result = jdbcTemplate.query(sql, params, new UsuarioMapper());
-
 		return result;
+	}
+	
+	@Override
+	public void eliminarUsuario(Integer usuarioId) {
+		String sql = "DELETE FROM Usuarios WHERE usuarioId LIKE :usuarioId";
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("usuarioId", usuarioId);
+		jdbcTemplate.update(sql, params);		
+	}
+	
+	public Usuario buscarUsuario(String email, String password) {
+		String sql = "SELECT * FROM Usuarios WHERE email LIKE :email AND password LIKE :password";
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("email", email);
+		params.put("password", password);
+		List<Usuario> result = jdbcTemplate.query(sql, params, new UsuarioMapper());
+		if(result.size() == 0)//no encontró usuario
+			return null;
+		else
+			return result.get(0);
 	}
 
 	public NamedParameterJdbcTemplate getJdbcTemplate() {

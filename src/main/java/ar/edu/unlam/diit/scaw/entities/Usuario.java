@@ -14,7 +14,7 @@ public class Usuario implements Serializable {
 	private String password;
 	private Integer rolId;
 	private Boolean activo;
-	private Date fechaAlta;
+	private Date fechaAlta = new Date();
 
 	public Usuario() {
 	}

@@ -6,8 +6,12 @@ import ar.edu.unlam.diit.scaw.entities.Usuario;;
 
 public interface UsuarioService {
 
-	public void save(Usuario usuario);
+	public void guardarUsuario(Usuario usuario);
 
-	public List<Usuario> findAll();
+	public List<Usuario> listarUsuarios();
+	
+	public void eliminarUsuario(Integer usuarioId);
+	
+	public Usuario buscarUsuario(String email, String password);
 
 }
