@@ -16,7 +16,7 @@ import javax.faces.bean.ManagedBean;
 import ar.edu.unlam.diit.scaw.entities.Usuario;
 import ar.edu.unlam.diit.scaw.services.UsuarioService;
 
-@ManagedBean(name = "usuariosBean", eager = true)
+@ManagedBean(name = "usuarioBean", eager = true)
 @RequestScoped
 public class UsuarioBean implements Serializable {
 
@@ -64,7 +64,6 @@ public class UsuarioBean implements Serializable {
 	public String login(String email, String password) {
         Usuario usuario = service.buscarUsuario(email, password);
         FacesContext context = FacesContext.getCurrentInstance();
-
         if (usuario == null) {
             context.addMessage(null, new FacesMessage("Error al loguearse"));
             email = null;
