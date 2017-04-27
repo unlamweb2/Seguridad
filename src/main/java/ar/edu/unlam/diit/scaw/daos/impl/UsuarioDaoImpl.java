@@ -52,6 +52,15 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		jdbcTemplate.update(sql, params);		
 	}
 	
+	@Override
+	public void activarUsuario(Integer usuarioId, Boolean activo) {		
+		String sql = "UPDATE Usuarios SET Activo = :activo WHERE UsuarioId = :usuarioId";
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("activo", activo);
+		params.put("usuarioId", usuarioId);
+		jdbcTemplate.update(sql, params);					
+	}
+	
 	public Usuario buscarUsuario(String email, String password) {
 		String sql = "SELECT * FROM Usuarios WHERE email LIKE :email AND password LIKE :password";
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -62,6 +71,17 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			return null;
 		else
 			return result.get(0);
+	}
+	
+	@Override
+	public List<Usuario> crearSesion(String email, String password){
+		String sql = "SELECT * FROM Usuarios WHERE Email LIKE :email AND Password LIKE :password AND Activo LIKE :activo";
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("usuario", email);
+		params.put("password", password);
+		params.put("activo", 1);
+		List<Usuario> result = jdbcTemplate.query(sql, params, new UsuarioMapper());
+		return result;
 	}
 
 	public NamedParameterJdbcTemplate getJdbcTemplate() {

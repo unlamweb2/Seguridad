@@ -15,11 +15,20 @@
 	</h:head>
 
 	<h:body>
-		<div>
-		<h2>Bienvenido</h2>
+		<div class="panel-body">
 			<h:form>
-				<h:link class="btn btn-default btn-block" value="Iniciar Sesión" outcome="login" />
-				<h:link class="btn btn-primary btn-block" value="Registrarse" outcome="registracion" />
+				<h2>Login</h2>
+				
+				<div class="form-group">	
+					<h:outputText value="Email"></h:outputText><br></br>
+					<h:inputText value="#{usuarioBean.email}" class="form-control"></h:inputText>
+				</div>
+				<div class="form-group">
+					<h:outputText value="Contraseña:"></h:outputText><br></br>
+					<h:inputSecret value="#{usuarioBean.password}" class="form-control"></h:inputSecret>
+				</div>
+				
+				<h:commandButton value="Login" action="#{usuarioBean.grabarUsuario}" class="btn btn-primary"></h:commandButton>
 			</h:form>
 		</div>
 	</h:body>

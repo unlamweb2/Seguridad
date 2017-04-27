@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ManagedBean;
 
 import org.springframework.context.ApplicationContext;

@@ -4,7 +4,11 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.faces.bean.ManagedBean;
 
 import org.springframework.context.ApplicationContext;
@@ -50,6 +54,50 @@ public class UsuarioBean implements Serializable {
 		service.eliminarUsuario(usuarioId);				
 		return "usuarios";
 	}
+	
+	public String activarUsuario(Integer usuarioId, Boolean activo) {
+		activo = false;
+		if (activo) {
+			service.activarUsuario(usuarioId, activo);				
+		}
+		return "usuarios";
+	}
+
+	public String crearSesion(String email, String password ) throws ServletException { 
+		List<Usuario> list = service.crearSesion(email, password);
+			if(list.isEmpty()) {//si el usuario ya está registrado
+				FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+				return "login";
+			} else {//si no está registrado
+				FacesContext context = FacesContext.getCurrentInstance();
+				HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+				
+				Usuario usuario = new Usuario();
+				usuario.setUsuarioId(list.get(0).getUsuarioId());
+				usuario.setEmail(list.get(0).getEmail());
+				usuario.setRolId(list.get(0).getRolId());
+				usuario.setActivo(list.get(0).getActivo());
+				
+				HttpSession session = request.getSession(true);
+				session.setAttribute("id", usuario.getUsuarioId());
+				session.setAttribute("usuario", usuario.getEmail());
+				session.setAttribute("tipo", usuario.getRolId());
+				session.setAttribute("aprobado", usuario.getActivo());
+				
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuario);
+				
+				if (usuario.getRolId() == 1) { 
+					return "usuarios";	//Si es admin					
+				} else {
+					return "tareas";	//si es usuario
+				}
+			}
+		}
+		
+		public String logout() {
+			FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+			return "login";
+		}
 	
 	private Usuario buildUsuario() {
 		Usuario usuario = new Usuario();

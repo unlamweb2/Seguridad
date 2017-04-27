@@ -12,6 +12,9 @@ public interface UsuarioService {
 	
 	public void eliminarUsuario(Integer usuarioId);
 	
+	public void activarUsuario(Integer usuarioId, Boolean activo);
+	
 	public Usuario buscarUsuario(String email, String password);
-
+	
+	public List<Usuario> crearSesion(String email, String password);
 }

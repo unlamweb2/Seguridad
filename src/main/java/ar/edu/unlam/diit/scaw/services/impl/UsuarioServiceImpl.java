@@ -29,8 +29,17 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 	
 	@Override
+	public void activarUsuario(Integer usuarioId, Boolean activo) {
+		usuarioDao.activarUsuario(usuarioId, activo);
+	}
+	
+	@Override
 	public Usuario buscarUsuario(String email, String password) {
 		return usuarioDao.buscarUsuario(email, password);
+	}
+	
+	public List<Usuario> crearSesion(String email, String password) {
+		return usuarioDao.crearSesion(email, password);
 	}
 	
 	public UsuarioDao getUsuarioDao() {
