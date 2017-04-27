@@ -28,7 +28,7 @@
 			<h:panelGrid>
 				<h:form padding="top"> 
 					<h:link class="btn btn-default" value="Lista de Usuarios" outcome="usuarios" />
-			  		<h:commandLink id="logout" value="Cerrar Sesión" action="#{usuarioBean.eliminarSesion}" /> 
+			  		<h:commandLink id="logout" value="Cerrar Sesión" action="#{usuarioBean.logout}" /> 
 			  	</h:form>  		
 			</h:panelGrid>
 		</h:panelGroup>
@@ -39,7 +39,7 @@
 				<h:form>
 					<h:link class="btn btn-default" value="Listado tareas" outcome="tareas" />
 			  		<h:link class="btn btn-default" value="Crear tarea" outcome="altaTarea" /> 
-			  		<h:commandLink id="logout" value="Cerrar Sesión" align="right" action="#{usuarioBean.eliminarSesion}" /> 
+			  		<h:commandLink id="logout" value="Cerrar Sesión" align="right" action="#{usuarioBean.logout}" /> 
 			  	</h:form>	  		
 			</h:panelGrid>
 		</h:panelGroup>

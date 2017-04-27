@@ -28,7 +28,7 @@
 					<h:inputSecret value="#{usuarioBean.password}" class="form-control"></h:inputSecret>
 				</div>
 				
-				<h:commandButton value="Login" action="#{usuarioBean.crearSesion(usuarioBean.email, usuarioBean.password)}" class="btn btn-primary"></h:commandButton>
+				<h:commandButton value="Login" action="#{usuarioBean.login(usuarioBean.email, usuarioBean.password)}" class="btn btn-primary"></h:commandButton>
 			</h:form>
 		</div>
 	</h:body>

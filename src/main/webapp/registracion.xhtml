@@ -25,7 +25,7 @@
 				</div>
 				<div class="form-group">
 					<h:outputText value="Apellido"></h:outputText><br></br>
-					<h:inputSecret value="#{usuarioBean.apellido}" class="form-control"></h:inputSecret>
+					<h:inputText value="#{usuarioBean.apellido}" class="form-control"></h:inputText>
 				</div>
 				<div class="form-group">	
 					<h:outputText value="Email"></h:outputText><br></br>
@@ -36,7 +36,7 @@
 					<h:inputSecret value="#{usuarioBean.password}" class="form-control"></h:inputSecret>
 				</div>
 				
-				<h:commandButton value="Login" action="#{usuarioBean.grabarUsuario}" class="btn btn-primary"></h:commandButton>
+				<h:commandButton value="Registrarse" action="#{usuarioBean.guardarUsuario}" class="btn btn-primary"></h:commandButton>
 			</h:form>
 		</div>
 	</h:body>
