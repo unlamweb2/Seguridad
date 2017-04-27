@@ -10,74 +10,38 @@
 	>
 
 	<h:head>
-		<title>Seguridad</title>
 		<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 	</h:head>
 
-	<h:body>	
-		<!-- Menu administrador -->
-	    
-	    <h:panelGroup rendered="#{sessionScope.usuario.tipo == 1}">
-	   		<h:panelGrid columns="1" border="1">
-				<h:outputLabel align="center" id="adminNameLabel" 
-				for="adminName" value=" Bienvenido: #{sessionScope.usuario.usuario} " /> 
-			</h:panelGrid>
-			<br />
-			
-			<h:panelGrid columns="18" border="0">
-		
-				<ul style="list-style-type:none; margin: 0; padding: 0;">
-					<li>
-						<h:link value="Listado usuarios" outcome="usuarios" /> |
-			  			<h:link value="Alta usuario" outcome="altaUsr" /> | 
-			  			<h:link value="Baja usuario" outcome="bajaUsr" /> | 
-			  			<h:link value="Editar usuario" outcome="editarUsr" /> |
-			  			<h:link value="Listado tareas" outcome="tareas" /> |
-			  			<h:link value="Crear tarea" outcome="altaTarea" /> |
-			  			<h:link value="Editar tarea" outcome="editarTarea" /> |  		
-			  			<h:form padding="top"> 
-			  				<h:commandLink id="Salir" value="Salir" align="right" action="#{usuarioBean.eliminarSesion}" /> 
-			  			</h:form>	  		
-			  		</li>
-				</ul>
-			</h:panelGrid>
-	    	
-		</h:panelGroup>
-	    
-		<!-- Menu usuario -->
-		<h:panelGroup rendered="#{sessionScope.usuario.tipo == 2}">
-			<h:panelGrid columns="1" border="1">
-				<h:outputLabel align="center" id="usernameLabel" 
-				for="username" value=" Bienvenido: #{sessionScope.usuario.usuario} " /> 
-			</h:panelGrid>
-			<br />
-			
-			<h:panelGrid columns="18" border="0">
-		
-				<ul style="list-style-type:none; margin: 0; padding: 0;">
-					<li>
-						<h:link value="Listado tareas" outcome="tareas" /> |
-			  			<h:link value="Crear tarea" outcome="altaTarea" /> |
-			  			<h:link value="Editar tarea" outcome="editarTarea" /> | 	  		
-			  			<h:form padding="top"> 
-			  				<h:commandLink id="Salir" value="Salir" align="right" action="#{usuarioBean.eliminarSesion}" /> 
-			  			</h:form>	  		
-			  		</li>
-				</ul>
-			</h:panelGrid>
-	    	
+	<h:body>
+	
+		<!--Anónimo-->
+		<h:panelGroup rendered="#{sessionScope.usuario.rolId == NULL}">
+			<h:form>
+					<h:link class="btn btn-default" value="Registrarse" outcome="registracion" />
+			</h:form>
 		</h:panelGroup>
 		
-		<!-- Menu anonimo -->
-		<h:panelGroup rendered="#{sessionScope.usuario.tipo == NULL}">
-			<ul style="list-style-type:none; margin: 0; padding: 0;">
-					<li>
-						<h:link value="Listado tareas" outcome="tareas" /> |
-			  			<h:link value="Registrarse" align="right" outcome="login" />
-			  		</li>
-				</ul>
-		
+		<!--Administrador-->
+	    <h:panelGroup rendered="#{sessionScope.usuario.rolId == 1}">
+			<h:panelGrid>
+				<h:form padding="top"> 
+					<h:link class="btn btn-default" value="Lista de Usuarios" outcome="usuarios" />
+			  		<h:commandLink id="logout" value="Cerrar Sesión" action="#{usuarioBean.eliminarSesion}" /> 
+			  	</h:form>  		
+			</h:panelGrid>
+		</h:panelGroup>
+	    
+		<!--Usuario-->
+		<h:panelGroup rendered="#{sessionScope.usuario.rolId == 2}">
+			<h:panelGrid>
+				<h:form>
+					<h:link class="btn btn-default" value="Listado tareas" outcome="tareas" />
+			  		<h:link class="btn btn-default" value="Crear tarea" outcome="altaTarea" /> 
+			  		<h:commandLink id="logout" value="Cerrar Sesión" align="right" action="#{usuarioBean.eliminarSesion}" /> 
+			  	</h:form>	  		
+			</h:panelGrid>
 		</h:panelGroup>
 				
 	</h:body>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	>
+
+	<h:head>
+		<title>Seguridad</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+	</h:head>
+
+	<h:body>
+		<div>
+			<h:form>
+				<h2>Registración</h2>
+				
+				<div class="form-group">	
+					<h:outputText value="Nombre"></h:outputText><br></br>
+					<h:inputText value="#{usuarioBean.nombre}" class="form-control"></h:inputText>
+				</div>
+				<div class="form-group">
+					<h:outputText value="Apellido"></h:outputText><br></br>
+					<h:inputSecret value="#{usuarioBean.apellido}" class="form-control"></h:inputSecret>
+				</div>
+				<div class="form-group">	
+					<h:outputText value="Email"></h:outputText><br></br>
+					<h:inputText value="#{usuarioBean.email}" class="form-control"></h:inputText>
+				</div>
+				<div class="form-group">
+					<h:outputText value="Contraseña"></h:outputText><br></br>
+					<h:inputSecret value="#{usuarioBean.password}" class="form-control"></h:inputSecret>
+				</div>
+				
+				<h:commandButton value="Login" action="#{usuarioBean.grabarUsuario}" class="btn btn-primary"></h:commandButton>
+			</h:form>
+		</div>
+	</h:body>
+</html>

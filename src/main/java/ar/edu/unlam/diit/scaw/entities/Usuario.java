@@ -16,6 +16,16 @@ public class Usuario implements Serializable {
 	private Boolean activo;
 	private Date fechaAlta = new Date();
 
+	public Usuario(String nombre, String apellido, String email, String password, Integer rolId, Boolean activo, Date fechaAlta){
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = email;
+		this.password = password;
+		this.rolId = 2;
+		this.activo = false;
+		this.fechaAlta = fechaAlta;
+	}
+	
 	public Usuario() {
 	}
 

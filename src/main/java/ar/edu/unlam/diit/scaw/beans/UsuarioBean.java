@@ -82,7 +82,7 @@ public class UsuarioBean implements Serializable {
 				session.setAttribute("id", usuario.getUsuarioId());
 				session.setAttribute("usuario", usuario.getEmail());
 				session.setAttribute("tipo", usuario.getRolId());
-				session.setAttribute("aprobado", usuario.getActivo());
+				session.setAttribute("activo", usuario.getActivo());
 				
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuario);
 				

@@ -24,11 +24,11 @@
 					<h:inputText value="#{usuarioBean.email}" class="form-control"></h:inputText>
 				</div>
 				<div class="form-group">
-					<h:outputText value="Contraseña:"></h:outputText><br></br>
+					<h:outputText value="Contraseña"></h:outputText><br></br>
 					<h:inputSecret value="#{usuarioBean.password}" class="form-control"></h:inputSecret>
 				</div>
 				
-				<h:commandButton value="Login" action="#{usuarioBean.grabarUsuario}" class="btn btn-primary"></h:commandButton>
+				<h:commandButton value="Login" action="#{usuarioBean.crearSesion(usuarioBean.email, usuarioBean.password)}" class="btn btn-primary"></h:commandButton>
 			</h:form>
 		</div>
 	</h:body>
