@@ -38,7 +38,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 		return usuarioDao.buscarUsuario(email, password);
 	}
 	
-	public List<Usuario> crearSesion(String email, String password) {
+	public Usuario crearSesion(String email, String password) {
 		return usuarioDao.crearSesion(email, password);
 	}
 	

@@ -8,6 +8,7 @@ INSERT INTO Estados (Descripcion) VALUES ('Pendiente');
 INSERT INTO Estados (Descripcion) VALUES ('Finalizada');
 INSERT INTO Estados (Descripcion) VALUES ('Eliminada');
 
-INSERT INTO Usuarios (Nombre, Apellido, Email, Password, RolId, Activo, FechaAlta) VALUES ('Gonzalo', 'Ciancio', 'admin', 'admin', 1, true, CURDATE());
+INSERT INTO Usuarios (Nombre, Apellido, Email, Password, RolId, Activo, FechaAlta) VALUES ('Gonzalo', 'Ciancio', 'admin', 'password', 1, true, CURDATE());
+INSERT INTO Usuarios (Nombre, Apellido, Email, Password, RolId, Activo, FechaAlta) VALUES ('Ramiro', 'Silva', 'ramirosilva@gmail.com', 'hola123', 1, true, CURDATE());
 
 --COMMIT;

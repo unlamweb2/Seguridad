@@ -16,5 +16,5 @@ public interface UsuarioService {
 	
 	public Usuario buscarUsuario(String email, String password);
 	
-	public List<Usuario> crearSesion(String email, String password);
+	public Usuario crearSesion(String email, String password);
 }

@@ -60,18 +60,58 @@ public class UsuarioBean implements Serializable {
 		}
 		return "usuarios";
 	}
+	
+	/*public String l(String usrName, String password ) throws ServletException { 
+		
+		List<Usuario> list = service.crearSesion(usrName, password);
+		
+		if(list.isEmpty()) {	// usuario no registrado
+			FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+			return "login";
+		
+		} else {				// usuario registrado en sistema
+			FacesContext context = FacesContext.getCurrentInstance();
+			HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+			
+			//Se crea una nueva sesión para este usuario
+			Usuario usuario = new Usuario();
+			usuario.setId(list.get(0).getId());
+			usuario.setUsuario(list.get(0).getUsuario());
+			usuario.setTipo(list.get(0).getTipo());
+			usuario.setAprobado(list.get(0).getAprobado());
+			
+			HttpSession session = request.getSession(true);
+			session.setAttribute("id", usuario.getId());
+			session.setAttribute("usuario", usuario.getUsuario());
+			session.setAttribute("tipo", usuario.getTipo());
+			session.setAttribute("aprobado", usuario.getAprobado());
+			
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuario);
+			
+			if (usuario.getTipo() == 1) { 
+				return "usuarios";	// Administrador -> muestro usuarios					
+			} else {
+				return "tareas";	// Usuarios -> muestro tareas
+			}
+			
+		}
+	}*/
 
 	public String login(String email, String password) {
-        Usuario usuario = service.buscarUsuario(email, password);
+        Usuario usuario = service.crearSesion(email, password);
         FacesContext context = FacesContext.getCurrentInstance();
         if (usuario == null) {
             context.addMessage(null, new FacesMessage("Error al loguearse"));
             email = null;
             password = null;
-            return null;
+            return "";
         } else {
             context.getExternalContext().getSessionMap().put("usuario", usuario);
-            return "tareas";
+            if (((Usuario) usuario).getRolId() == 1) {
+				return "usuarios";	// Administrador -> muestro usuarios					
+			} else {
+				return "tareas";	// Usuarios -> muestro tareas
+			}
         }
     }
 		
