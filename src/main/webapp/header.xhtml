@@ -25,14 +25,6 @@
 		
 		<!--Administrador-->
 	    <h:panelGroup rendered="#{sessionScope.usuario.rolId == 1}">
-			<h:panelGrid>
-				
-				<h:outputText value="#{sessionScope.usuario.nombre}"></h:outputText>
-				<h:form padding="top"> 
-					<h:link class="btn btn-default" value="Lista Usuarios" outcome="usuarios" />
-			  		<h:commandLink id="logout" value="Cerrar Sesión" action="#{usuarioBean.logout}" /> 
-			  	</h:form>  		
-			</h:panelGrid>
 		</h:panelGroup>
 	    
 		<!--Usuario-->
