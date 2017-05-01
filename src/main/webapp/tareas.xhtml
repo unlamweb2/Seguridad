@@ -32,14 +32,19 @@
 			   	#{tarea.descripcion}
 			</h:column>
 			<h:column>
+				<f:facet name="header">Privacidad</f:facet>
+				<h:outputLabel value="Publica"	rendered="#{tarea.privacidad == 1}" />
+				<h:outputLabel value="Privada" rendered="#{tarea.privacidad == 2}" />
+			</h:column>
+			<h:column>
 				<f:facet name="header">Tipo</f:facet>
-				<h:outputLabel value="Publica"	rendered="#{tarea.tipoTarea == 1}" />
-				<h:outputLabel value="Privada" rendered="#{tarea.tipoTarea == 2}" />
+				<h:outputLabel value="Editable"	rendered="#{tarea.tipoTarea == 1}" />
+				<h:outputLabel value="Solo lectura" rendered="#{tarea.tipoTarea == 2}" />
 			</h:column>
 			<h:column>
 				<f:facet name="header">Estado</f:facet>
 				<h:outputLabel value="Pendiente" rendered="#{tarea.estadoId == 1}" />
-				<h:outputLabel value="Finalizada" rendered="#{tarea.estadoId == 2}" />
+				<h:outputLabel value="Completa" rendered="#{tarea.estadoId == 2}" />
 			</h:column>		
 			<h:column>
 				<f:facet name="header">Autor</f:facet>

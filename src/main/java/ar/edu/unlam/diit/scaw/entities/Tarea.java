@@ -8,8 +8,8 @@ public class Tarea {
 	private String titulo;
 	private String descripcion;
 	private Integer estadoId;
+	private Integer privacidad;
 	private Integer tipoTarea;
-	private Boolean editable;
 	private Integer usuarioAlta;
 	private Date fechaAlta = new Date();
 	
@@ -48,20 +48,20 @@ public class Tarea {
 		this.estadoId = estadoId;
 	}
 	
+	public Integer getPrivacidad(){
+		return privacidad;
+	}
+	
+	public void setPrivacidad(Integer privacidad){
+		this.privacidad = privacidad;
+	}
+	
 	public Integer getTipoTarea(){
 		return tipoTarea;
 	}
 	
 	public void setTipoTarea(Integer tipoTarea){
 		this.tipoTarea = tipoTarea;
-	}
-	
-	public Boolean getEditable(){
-		return editable;
-	}
-	
-	public void setEditable(Boolean editable){
-		this.editable = editable;
 	}
 	
 	public Integer getUsuarioAlta(){

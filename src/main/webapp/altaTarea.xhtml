@@ -29,17 +29,24 @@
 				<h:outputLabel for="descripcion">Descripcion:</h:outputLabel>
 				<h:inputTextarea cols="30" rows="5" type="descripcion" value="#{tareaBean.descripcion}" id="descripcion"></h:inputTextarea>
 				
+				<h:outputLabel for="privacidad">Privacidad:</h:outputLabel>
+				<h:selectOneMenu value = "#{tareaBean.privacidad}"> 
+		   			<f:selectItem itemValue = "1" itemLabel = "Publica" /> 
+		   			<f:selectItem itemValue = "2" itemLabel = "Privada" /> 
+				</h:selectOneMenu>
+				
+				<h:outputLabel for="tipoTarea">Tipo:</h:outputLabel>
+				<h:selectOneMenu value = "#{tareaBean.tipoTarea}"> 
+		   			<f:selectItem itemValue = "1" itemLabel = "Editable" /> 
+		   			<f:selectItem itemValue = "2" itemLabel = "Solo lectura" /> 
+				</h:selectOneMenu>
+				
 				<h:outputLabel for="estado">Estado:</h:outputLabel>
 				<h:selectOneMenu value = "#{tareaBean.estadoId}"> 
 		   			<f:selectItem itemValue = "1" itemLabel = "Pendiente" /> 
 		   			<f:selectItem itemValue = "2" itemLabel = "Completa" /> 
 				</h:selectOneMenu>
 					
-				<h:outputLabel for="tipoTarea">Privacidad:</h:outputLabel>
-				<h:selectOneMenu value = "#{tareaBean.tipoTarea}"> 
-		   			<f:selectItem itemValue = "1" itemLabel = "Publica" /> 
-		   			<f:selectItem itemValue = "2" itemLabel = "Solo lectura" /> 
-				</h:selectOneMenu>
 			</h:panelGrid>
 			<h:commandButton value="Crear" action="#{tareaBean.guardarTarea}" class="btn btn-primary"></h:commandButton>				
 			<br></br>

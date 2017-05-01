@@ -22,8 +22,8 @@ public class TareaBean implements Serializable {
 	private String titulo = null;
 	private String descripcion = null;
 	private Integer estadoId = null;
+	private Integer privacidad = null;
 	private Integer tipoTarea = null;
-	private Boolean editable = null;
 	private Integer usuarioAlta = null;
 	private Date fechaAlta = new Date();
 	
@@ -56,21 +56,21 @@ public class TareaBean implements Serializable {
 		tarea.setTitulo(this.titulo);
 		tarea.setDescripcion(this.descripcion);
 		tarea.setEstadoId(this.estadoId);
+		tarea.setPrivacidad(this.privacidad);
 		tarea.setTipoTarea(this.tipoTarea);
-		tarea.setEditable(this.editable);
 		tarea.setUsuarioAlta(this.usuarioAlta);
 		tarea.setFechaAlta(this.fechaAlta);
 		
 		return tarea;
 	}
 
-	public TareaBean(String titulo, String descripcion, Integer estadoId, Integer tipoTarea, Boolean editable, Integer usuarioAlta, Date fechaAlta) {
+	public TareaBean(String titulo, String descripcion, Integer estadoId, Integer privacidad, Integer tipoTarea, Integer usuarioAlta, Date fechaAlta) {
 		super();
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.estadoId = estadoId;
+		this.privacidad = privacidad;
 		this.tipoTarea = tipoTarea;
-		this.editable = editable;
 		this.usuarioAlta = usuarioAlta;
 		this.fechaAlta = fechaAlta;
 	}
@@ -99,20 +99,20 @@ public class TareaBean implements Serializable {
 		this.estadoId = estadoId;
 	}
 	
+	public Integer getPrivacidad(){
+		return privacidad;
+	}
+	
+	public void setPrivacidad(Integer privacidad){
+		this.privacidad = privacidad;
+	}
+	
 	public Integer getTipoTarea(){
 		return tipoTarea;
 	}
 	
 	public void setTipoTarea(Integer tipoTarea){
 		this.tipoTarea = tipoTarea;
-	}
-	
-	public Boolean getEditable(){
-		return editable;
-	}
-	
-	public void setEditable(Boolean editable){
-		this.editable = editable;
 	}
 	
 	public Integer getUsuarioAlta(){
