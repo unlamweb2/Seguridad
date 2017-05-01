@@ -36,34 +36,48 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		jdbcTemplate.update(sql, params);
 	}
 
-	@Override
-	public List<Usuario> listarUsuarios() {
-		String sql = "SELECT * FROM Usuarios";
-		Map<String, Object> params = new HashMap<String, Object>();
-		List<Usuario> result = jdbcTemplate.query(sql, params, new UsuarioMapper());
-		return result;
-	}
-	
-	@Override
-	public void eliminarUsuario(Integer usuarioId) {
-		String sql = "DELETE FROM Usuarios WHERE usuarioId LIKE :usuarioId";
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("usuarioId", usuarioId);
-		jdbcTemplate.update(sql, params);		
-	}
-	
-	@Override
-	public void activarUsuario(Integer usuarioId, Boolean activo) {		
-		String sql = "UPDATE Usuarios SET Activo = :activo WHERE UsuarioId = :usuarioId";
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("activo", activo);
-		params.put("usuarioId", usuarioId);
-		jdbcTemplate.update(sql, params);					
-	}
-	
-public Usuario buscarUsuario(String email, String password) {
+			@Override
+		public List<Usuario> listarUsuarios() {
+			String sql = "SELECT * FROM Usuarios WHERE RolId = 2";
+			Map<String, Object> params = new HashMap<String, Object>();
+			List<Usuario> result = jdbcTemplate.query(sql, params, new UsuarioMapper());
+			return result;
+		}
 		
-		try{ // por si me da error si el usuario no existe
+		
+		@Override
+		public List<Usuario> listarUsuariosInactivos() {
+			String sql = "SELECT * FROM Usuarios WHERE Activo = false";
+			Map<String, Object> params = new HashMap<String, Object>();
+			List<Usuario> result = jdbcTemplate.query(sql, params, new UsuarioMapper());
+			return result;
+		}
+		
+		
+		@Override
+		public void eliminarUsuario(Integer usuarioId) {
+			String sql = "DELETE FROM Usuarios WHERE usuarioId LIKE :usuarioId";
+
+			Map<String, Object> params = new HashMap<String, Object>();
+			params.put("usuarioId", usuarioId);
+			jdbcTemplate.update(sql, params);	
+
+		}
+		
+		@Override
+		public void activarUsuario(Integer usuarioId, Boolean activo) {	
+			activo = true;
+			String sql = "UPDATE Usuarios SET Activo = :activo, FechaAlta = CURDATE() WHERE UsuarioId = :usuarioId";
+			Map<String, Object> params = new HashMap<String, Object>();
+			params.put("activo", activo);
+			params.put("usuarioId", usuarioId);
+			jdbcTemplate.update(sql, params);		
+		}
+	
+	@Override
+      public Usuario buscarUsuario(String email, String password) {
+		
+		try{
 		String sql = "SELECT * FROM Usuarios WHERE email = " + email + " AND Password = "+ password +"";
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("email", email);
