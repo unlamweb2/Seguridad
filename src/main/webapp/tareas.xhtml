@@ -18,11 +18,11 @@
 	<h:body>
 		<ui:include src="/header.xhtml" />
 	
-		<h2>Listado de Tareas</h2>
+		<center><h2>Listado de Tareas</h2></center>
 		<br>
 		</br>
 
-		<h:dataTable value="#{tareaBean.listarTareas()}" var="tarea" styleClass="order-table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row">
+		<center><h:dataTable value="#{tareaBean.listarTareas()}" var="tarea" styleClass="order-table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row">
 			<h:column>
 				<f:facet name="header">Titulo</f:facet>    				
 			   	#{tarea.titulo}
@@ -49,7 +49,7 @@
 				<f:facet name="header">Creación</f:facet>
 			 	#{tarea.fechaAlta} 	    	  				
 			</h:column>
-		</h:dataTable>
+		</h:dataTable></center>
 		<br>
 	    </br>
         <br>
