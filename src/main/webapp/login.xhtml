@@ -17,7 +17,7 @@
 	<h:body>
 		<div class="panel-body">
 			<h:form>
-				<h2>Login</h2>
+				<center><h2>Logueo de Usuario</h2></center>
 				
 				<div class="form-group">	
 					<h:outputText value="Email"></h:outputText><br></br>
@@ -29,6 +29,9 @@
 				</div>
 				
 				<h:commandButton value="Login" action="#{usuarioBean.login(usuarioBean.email, usuarioBean.password)}" class="btn btn-primary"></h:commandButton>
+				<br>
+				</br>
+				<h:link class="btn btn-primary btn-block" value="Página Principal" outcome="index" />
 			</h:form>
 		</div>
 	</h:body>

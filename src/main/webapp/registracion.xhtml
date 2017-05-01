@@ -20,7 +20,7 @@
 	</h:form>
 		<div>
 			<h:form>
-				<h2>Registración</h2>
+				<center><h2>Registración</h2></center>
 				
 				<div class="form-group">	
 					<h:outputText value="Nombre"></h:outputText><br></br>
@@ -40,6 +40,9 @@
 				</div>
 				
 				<h:commandButton value="Registrarse" action="#{usuarioBean.guardarUsuario}" class="btn btn-primary"></h:commandButton>
+				<br>
+				</br>
+				<h:link class="btn btn-primary btn-block" value="Página Principal" outcome="index" />
 			</h:form>
 		</div>
 	</h:body>
