@@ -40,7 +40,7 @@ public class UsuarioBean implements Serializable {
 	public String guardarUsuario() {
 		Usuario usuario = buildUsuario();
 		service.guardarUsuario(usuario);
-		return "usuarios";
+		return "login";
 	}
 	
        public List<Usuario> listarUsuarios() {
