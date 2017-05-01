@@ -10,6 +10,8 @@ public interface UsuarioDao {
 
 	public List<Usuario> listarUsuarios();
 	
+	public List<Usuario> listarUsuariosInactivos();
+	
 	public void eliminarUsuario(Integer usuarioId);
 	
 	public void activarUsuario(Integer usuarioId, Boolean activo);
