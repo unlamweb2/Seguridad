@@ -35,9 +35,8 @@ public class TareaBean implements Serializable {
 		super();
 	}
 	
-	public String guardarTarea(String usuarioAlta) {
+	public String guardarTarea() {
 		Tarea tarea = buildTarea();
-		tarea.setUsuarioAlta(Integer.parseInt(usuarioAlta));
 		service.guardarTarea(tarea);
 		return "tareas";
 	}
@@ -104,7 +103,7 @@ public class TareaBean implements Serializable {
 		return tipoTarea;
 	}
 	
-	public void setPublico(Integer tipoTarea){
+	public void setTipoTarea(Integer tipoTarea){
 		this.tipoTarea = tipoTarea;
 	}
 	
