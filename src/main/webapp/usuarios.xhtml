@@ -16,7 +16,8 @@
 	</h:head>
 
 	<h:body>
-	
+		
+	    <ui:include src="/header.xhtml" />
 	    <h2>Todos los Usuarios</h2>
 	    <h:form>
 	    <h:dataTable value="#{usuarioBean.listarUsuarios()}" var="usuario" styleClass="order-table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row">
