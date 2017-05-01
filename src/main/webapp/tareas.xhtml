@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	>
+
+	<h:head>
+		<title>Seguridad</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/estilos.css" />
+	</h:head>
+
+	<h:body>
+		<ui:include src="/header.xhtml" />
+	
+		<h2>Listado de Tareas</h2>
+
+		<h:dataTable value="#{tareaBean.listarTareas()}" var="tarea" styleClass="order-table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row">
+			<h:column>
+				<f:facet name="header">Titulo</f:facet>    				
+			   	#{tarea.titulo}
+			</h:column> 
+			<h:column>
+				<f:facet name="header">Descripcion</f:facet>
+			   	#{tarea.descripcion}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Tipo</f:facet>
+				<h:outputLabel value="Publica"	rendered="#{tarea.tipoTarea == 1}" />
+				<h:outputLabel value="Privada" rendered="#{tarea.tipoTarea == 2}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Estado</f:facet>
+				<h:outputLabel value="Pendiente" rendered="#{tarea.estadoId == 1}" />
+				<h:outputLabel value="Finalizada" rendered="#{tarea.estadoId == 2}" />
+			</h:column>		
+			<h:column>
+				<f:facet name="header">Autor</f:facet>
+			 	#{tarea.usuarioAlta} 	    	  				
+			</h:column>
+			<h:column>
+				<f:facet name="header">Creación</f:facet>
+			 	#{tarea.fechaAlta} 	    	  				
+			</h:column>
+		</h:dataTable>
+	</h:body>
+</html>

@@ -16,7 +16,7 @@
 	</h:head>
 
 	<h:body>
-		<h2>Bienvenido!</h2>
+		<h2>Listado de Usuarios</h2>
 
 		<h:dataTable value="#{usuarioBean.listarUsuarios()}" var="usuario" styleClass="order-table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row">
 	
@@ -42,11 +42,13 @@
 		   </h:column>
 		   <h:column>
 				<f:facet name="header">Rol</f:facet>
-	    	  	#{usuario.rolId}
+	    	  	<h:outputLabel value="Administrador" rendered="#{usuario.rolId == 1}" />
+				<h:outputLabel value="Usuario" rendered="#{usuario.rolId == 2}" />
 		   </h:column>
 		   <h:column>
 				<f:facet name="header">Activo</f:facet>
-	    	  	#{usuario.activo}
+	    	  	<h:outputLabel value="No" rendered="#{usuario.activo == false}" />
+				<h:outputLabel value="Si" rendered="#{usuario.activo == true}" />
 		   </h:column>
 		   <h:column>
 				<f:facet name="header">Fecha Alta</f:facet>

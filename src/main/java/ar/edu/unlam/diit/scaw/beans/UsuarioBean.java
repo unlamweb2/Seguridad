@@ -40,7 +40,7 @@ public class UsuarioBean implements Serializable {
 	public String guardarUsuario() {
 		Usuario usuario = buildUsuario();
 		service.guardarUsuario(usuario);
-		return "login";
+		return "usuarios";
 	}
 	
 	public List<Usuario> listarUsuarios() {
@@ -74,7 +74,7 @@ public class UsuarioBean implements Serializable {
             if (((Usuario) usuario).getRolId() == 1) {
 				return "usuarios";	// Administrador -> muestro usuarios					
 			} else {
-				return "altaTarea";	// Usuarios -> muestro tareas
+				return "tareas";	// Usuarios -> muestro tareas
 			}
         }
     }

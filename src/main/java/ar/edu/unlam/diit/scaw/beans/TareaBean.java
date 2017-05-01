@@ -13,7 +13,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ar.edu.unlam.diit.scaw.entities.Tarea;
 import ar.edu.unlam.diit.scaw.services.TareaService;
 
-@ManagedBean(name = "tareasBean", eager = true)
+@ManagedBean(name = "tareaBean", eager = true)
 @RequestScoped
 public class TareaBean implements Serializable {
 
@@ -25,7 +25,7 @@ public class TareaBean implements Serializable {
 	private Integer tipoTarea = null;
 	private Boolean editable = null;
 	private Integer usuarioAlta = null;
-	private Date fechaAlta = null;
+	private Date fechaAlta = new Date();
 	
 	//Spring Inject
 	ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"beans.xml"});
@@ -35,13 +35,14 @@ public class TareaBean implements Serializable {
 		super();
 	}
 	
-	public String guardarTarea() {
+	public String guardarTarea(String usuarioAlta) {
 		Tarea tarea = buildTarea();
+		tarea.setUsuarioAlta(Integer.parseInt(usuarioAlta));
 		service.guardarTarea(tarea);
-		return "welcome";
+		return "tareas";
 	}
 	
-	public List<Tarea> getListarTareas() {
+	public List<Tarea> listarTareas() {
 		List<Tarea> list = service.listarTareas();
 		return list;
 	}
