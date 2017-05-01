@@ -27,7 +27,7 @@ CREATE TABLE Usuarios (
   Password	VARCHAR(20),
   RolId		INTEGER,
   Activo	BOOLEAN,
-  FechaAlta	TIMESTAMP(2),
+  FechaAlta	DATE,
 );
 ALTER TABLE Usuarios ADD CONSTRAINT id_rol FOREIGN KEY (RolId) REFERENCES Roles(RolId);
 
