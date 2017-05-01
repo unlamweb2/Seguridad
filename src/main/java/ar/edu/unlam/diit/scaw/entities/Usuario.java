@@ -21,8 +21,8 @@ public class Usuario implements Serializable {
 		this.apellido = apellido;
 		this.email = email;
 		this.password = password;
-		this.rolId = 2;
-		this.activo = false;
+		this.rolId = rolId;
+		this.activo = activo;
 		this.fechaAlta = fechaAlta;
 	}
 	
@@ -66,7 +66,7 @@ public class Usuario implements Serializable {
 	}
 
 	public void setPassword(String password) {
-		this.email = password;
+		this.password = password;
 	}
 
 	public Integer getRolId() {

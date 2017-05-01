@@ -61,8 +61,10 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		jdbcTemplate.update(sql, params);					
 	}
 	
-	public Usuario buscarUsuario(String email, String password) {
-		String sql = "SELECT * FROM Usuarios WHERE email = :email AND password = :password";
+public Usuario buscarUsuario(String email, String password) {
+		
+		try{ // por si me da error si el usuario no existe
+		String sql = "SELECT * FROM Usuarios WHERE email = " + email + " AND Password = "+ password +"";
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("email", email);
 		params.put("password", password);
@@ -71,11 +73,16 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			return null;
 		else
 			return result.get(0);
+		}
+		catch(Exception e) {
+			return new Usuario();
+		}
 	}
 	
 	@Override
 	public Usuario crearSesion(String email, String password){
-		String sql = "SELECT * FROM Usuarios WHERE Email = :email AND Password = :password AND Activo = :activo";
+	
+		String sql = "SELECT * FROM Usuarios WHERE Email = '" + email + "' AND Password = '" + password + "' ";
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("usuario", email);
 		params.put("password", password);
@@ -84,7 +91,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		if(result.size() == 0)//no encontró usuario
 			return null;
 		else
-			return result.get(0);
+			return result.get(0);		
 	}
 
 	public NamedParameterJdbcTemplate getJdbcTemplate() {
