@@ -26,6 +26,8 @@
 		<!--Administrador-->
 	    <h:panelGroup rendered="#{sessionScope.usuario.rolId == 1}">
 			<h:panelGrid>
+				
+				<h:outputText value="#{sessionScope.usuario.nombre}"></h:outputText>
 				<h:form padding="top"> 
 					<h:link class="btn btn-default" value="Lista Usuarios" outcome="usuarios" />
 			  		<h:commandLink id="logout" value="Cerrar Sesión" action="#{usuarioBean.logout}" /> 
@@ -36,6 +38,13 @@
 		<!--Usuario-->
 		<h:panelGroup rendered="#{sessionScope.usuario.rolId == 2}">
 			<h:panelGrid>
+				
+			<br></br>
+			<h:outputText value="#{sessionScope.usuario.nombre}"></h:outputText>
+			<h:outputText value="Estado: Activo" rendered= "#{sessionScope.usuario.activo == true}" > </h:outputText>
+			<h:outputText value="Estado: Inactivo" rendered= "#{sessionScope.usuario.activo == false}" ></h:outputText>
+			<br></br>
+		
 				<h:form>
 					<h:link class="btn btn-default" value="Listado Tareas" outcome="tareas" />
 			  		<h:link class="btn btn-default" value="Crear Tarea" outcome="altaTarea" /> 
