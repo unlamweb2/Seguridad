@@ -14,6 +14,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 	UsuarioDao usuarioDao;
 	
 	@Override
+	public List<Usuario> listarUsuariosInactivos() {
+		return usuarioDao.listarUsuariosInactivos();
+	}
+	
+	@Override
 	public void guardarUsuario(Usuario usuario) {
 		usuarioDao.guardarUsuario(usuario);
 	}
