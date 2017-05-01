@@ -43,9 +43,16 @@ public class UsuarioBean implements Serializable {
 		return "usuarios";
 	}
 	
-	public List<Usuario> listarUsuarios() {
+       public List<Usuario> listarUsuarios() {
 		List<Usuario> list = service.listarUsuarios();
-		return list;
+	    
+			return list;
+	}
+	
+	public List<Usuario> listarUsuariosInactivos() {
+		List<Usuario> list = service.listarUsuariosInactivos();
+	
+			return list;
 	}
 	
 	public String eliminarUsuario(Integer usuarioId) {
@@ -55,7 +62,7 @@ public class UsuarioBean implements Serializable {
 	
 	public String activarUsuario(Integer usuarioId, Boolean activo) {
 		activo = false;
-		if (activo) {
+		if (activo == false) {
 			service.activarUsuario(usuarioId, activo);				
 		}
 		return "usuarios";
