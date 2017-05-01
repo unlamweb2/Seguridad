@@ -26,9 +26,9 @@ public class UsuarioBean implements Serializable {
 	private String apellido = null;
 	private String email = null;
 	private String password = null;
-	private Integer rolId = null;
-	private Boolean activo = null;
-	private Date fechaAlta = null;
+	private Integer rolId = 2;
+	private Boolean activo = false;
+	private Date fechaAlta = new Date();
 
 	ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"beans.xml"});
 	UsuarioService service = (UsuarioService) context.getBean("usuarioService");
@@ -40,7 +40,7 @@ public class UsuarioBean implements Serializable {
 	public String guardarUsuario() {
 		Usuario usuario = buildUsuario();
 		service.guardarUsuario(usuario);
-		return "usuarios";
+		return "login";
 	}
 	
 	public List<Usuario> listarUsuarios() {
@@ -61,42 +61,6 @@ public class UsuarioBean implements Serializable {
 		return "usuarios";
 	}
 	
-	/*public String l(String usrName, String password ) throws ServletException { 
-		
-		List<Usuario> list = service.crearSesion(usrName, password);
-		
-		if(list.isEmpty()) {	// usuario no registrado
-			FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-			return "login";
-		
-		} else {				// usuario registrado en sistema
-			FacesContext context = FacesContext.getCurrentInstance();
-			HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-			
-			//Se crea una nueva sesión para este usuario
-			Usuario usuario = new Usuario();
-			usuario.setId(list.get(0).getId());
-			usuario.setUsuario(list.get(0).getUsuario());
-			usuario.setTipo(list.get(0).getTipo());
-			usuario.setAprobado(list.get(0).getAprobado());
-			
-			HttpSession session = request.getSession(true);
-			session.setAttribute("id", usuario.getId());
-			session.setAttribute("usuario", usuario.getUsuario());
-			session.setAttribute("tipo", usuario.getTipo());
-			session.setAttribute("aprobado", usuario.getAprobado());
-			
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuario);
-			
-			if (usuario.getTipo() == 1) { 
-				return "usuarios";	// Administrador -> muestro usuarios					
-			} else {
-				return "tareas";	// Usuarios -> muestro tareas
-			}
-			
-		}
-	}*/
-
 	public String login(String email, String password) {
         Usuario usuario = service.crearSesion(email, password);
         FacesContext context = FacesContext.getCurrentInstance();
@@ -110,7 +74,7 @@ public class UsuarioBean implements Serializable {
             if (((Usuario) usuario).getRolId() == 1) {
 				return "usuarios";	// Administrador -> muestro usuarios					
 			} else {
-				return "tareas";	// Usuarios -> muestro tareas
+				return "altaTarea";	// Usuarios -> muestro tareas
 			}
         }
     }
@@ -173,7 +137,7 @@ public class UsuarioBean implements Serializable {
 	}
 
 	public void setPassword(String password) {
-		this.email = password;
+		this.password = password;
 	}
 
 	public Integer getRolId() {
