@@ -60,8 +60,8 @@
 			</h:column>
 		    <h:column>
 				<f:facet name="header">Acción</f:facet>
-	    	  	<h:commandButton value="Eliminar"  action="#{tareaBean.eliminarTarea(tarea.tareaId)}" class="btn btn-primary"></h:commandButton>
-	    	  	<h:commandButton value="Editar"  action="#{tareaBean.editarTarea(tareaBean.tareaId, tareaBean.titulo, tareaBean.descripcion, tarea.privacidad, tarea.tipoTarea)}" class="btn btn-primary"></h:commandButton>
+	    	  	<h:commandButton value="Eliminar"  action="#{tareaBean.eliminarTarea(tarea.tareaId)}" class="btn btn-primary" rendered="#{tarea.usuarioAlta == sessionScope.usuario.usuarioId}"></h:commandButton>
+	    	  	<h:commandButton value="Editar"  action="#{tareaBean.editarTarea(tareaBean.tareaId, tareaBean.titulo, tareaBean.descripcion, tarea.privacidad, tarea.tipoTarea)}" class="btn btn-primary" rendered="#{tarea.usuarioAlta == sessionScope.usuario.usuarioId or (tarea.usuarioAlta != sessionScope.usuario.usuarioId and (tarea.privacidad == 1 and tarea.tipoTarea == 1))}"></h:commandButton>
 		   </h:column>
 		</h:dataTable></center>
 		<br>
