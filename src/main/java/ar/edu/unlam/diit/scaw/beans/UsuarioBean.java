@@ -80,14 +80,10 @@ public class UsuarioBean implements Serializable {
             return "";
         } else {
             context.getExternalContext().getSessionMap().put("usuario", usuario);
-            if (usuario.getActivo() == true){
-	            if (((Usuario) usuario).getRolId() == 1) {
-					return "usuarios";	// Administrador muestro usuarios					
-				} else {
-					return "tareas";	// Usuarios muestro tareas
-				} else{
-					return "login";
-				}
+            if (((Usuario) usuario).getRolId() == 1) {
+				return "usuarios";	// Administrador muestro usuarios					
+			} else {
+				return "tareas";	// Usuarios muestro tareas
             }
         }
     }
