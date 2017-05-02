@@ -18,10 +18,10 @@
 	
 		<ui:include src="header.xhtml" />
 		
-		<div class="panel-body">
-			<h:form>
-				<center><h2>Inicie Sesión</h2></center>
+		<h:form>
+			<h2 class="text-center">Inicie Sesión</h2>
 				
+			<div class="col-xs-6 col-xs-offset-3">
 				<div class="form-group">	
 					<h:outputText value="Email"></h:outputText><br></br>
 					<h:inputText value="#{usuarioBean.email}" class="form-control"></h:inputText>
@@ -30,9 +30,11 @@
 					<h:outputText value="Contraseña"></h:outputText><br></br>
 					<h:inputSecret value="#{usuarioBean.password}" class="form-control"></h:inputSecret>
 				</div>
-				
-				<h:commandButton value="Login" action="#{usuarioBean.login(usuarioBean.email, usuarioBean.password)}" class="btn btn-primary"></h:commandButton>
-			</h:form>
-		</div>
+					
+				<div class="text-center">
+					<h:commandButton value="Login" action="#{usuarioBean.login(usuarioBean.email, usuarioBean.password)}" class="btn btn-success"></h:commandButton>
+				</div>
+			</div>
+		</h:form>
 	</h:body>
 </html>

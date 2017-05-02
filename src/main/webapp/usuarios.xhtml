@@ -23,7 +23,7 @@
 		
 	    <ui:include src="/header.xhtml" />
 	    
-	    <center><h2>Lista de Usuarios</h2></center>
+	    <h2 class="text-center">Lista de Usuarios</h2>
 	    <h:form>
 			<center><h:dataTable value="#{usuarioBean.listarUsuarios()}" var="usuario" styleClass="order-table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row">
 		
@@ -63,8 +63,8 @@
 			   	</h:column>
 			   	<h:column>
 			   		<f:facet name="header">Acción</f:facet>
-		    		<h:commandButton value="Eliminar" action="#{usuarioBean.eliminarUsuario(usuario.usuarioId)}" class="btn btn-primary" rendered="#{usuario.usuarioId != sessionScope.usuario.usuarioId}"></h:commandButton>
-			    	<h:commandButton value="Activar" action="#{usuarioBean.activarUsuario(usuario.usuarioId, usuario.activo)}" class="btn btn-primary" rendered="#{usuario.activo == false}"></h:commandButton>
+		    		<h:commandButton value="Eliminar" action="#{usuarioBean.eliminarUsuario(usuario.usuarioId)}" class="btn btn-danger" rendered="#{usuario.usuarioId != sessionScope.usuario.usuarioId}"></h:commandButton>
+			    	<h:commandButton value="Activar" action="#{usuarioBean.activarUsuario(usuario.usuarioId, usuario.activo)}" class="btn btn-info" rendered="#{usuario.activo == false}"></h:commandButton>
 			   	</h:column>     
 		     	       
 			</h:dataTable></center>

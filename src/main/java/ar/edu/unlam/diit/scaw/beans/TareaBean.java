@@ -59,12 +59,13 @@ public class TareaBean implements Serializable {
 		return "tareas";
 		}
 	
-	public String editarTarea(Integer tareaId, String titulo, String descripcion, Integer privacidad, Integer tipoTarea) {		
+	public String editarTarea(Integer tareaId, String titulo, String descripcion, Integer privacidad, Integer tipoTarea, Integer estadoId) {		
+		this.setTareaId(tareaId);
 		this.setTitulo(titulo);
 		this.setDescripcion(descripcion);
 		this.setPrivacidad(privacidad);
 		this.setTipoTarea(tipoTarea);
-		this.setTareaId(tareaId);
+		this.setEstadoId(estadoId);
 		return "editarTarea";
 	}
 	

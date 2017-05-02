@@ -22,40 +22,43 @@
 	
 		<ui:include src="/header.xhtml" />
 	
-		<h2>Nueva Tarea</h2>
-		
-		<h:form>
+		<h2 class="text-center">Nueva Tarea</h2>
+		<div class="text-center">
+			<h:form>
+				
+				<h:inputHidden value="#{sessionScope.usuario.usuarioId}" id="usuarioAlta" name="formId:usuarioAlta"></h:inputHidden>
+				<div class="col-xs-6 col-xs-offset-3">
+					<center><h:panelGrid columns="2" border="0">
+						<h:outputLabel for="titulo">Titulo:</h:outputLabel>
+						<h:inputText value="#{tareaBean.titulo}" id="titulo"></h:inputText>
 			
-			<h:inputHidden value="#{sessionScope.usuario.usuarioId}" id="usuarioAlta" name="formId:usuarioAlta"></h:inputHidden>
-			
-			<h:panelGrid columns="2" border="0">
-				<h:outputLabel for="titulo">Titulo</h:outputLabel>
-				<h:inputText value="#{tareaBean.titulo}" id="titulo"></h:inputText>
-	
-				<h:outputLabel for="descripcion">Descripcion:</h:outputLabel>
-				<h:inputTextarea cols="30" rows="5" type="descripcion" value="#{tareaBean.descripcion}" id="descripcion"></h:inputTextarea>
-				
-				<h:outputLabel for="privacidad">Privacidad:</h:outputLabel>
-				<h:selectOneMenu value = "#{tareaBean.privacidad}"> 
-		   			<f:selectItem itemValue = "1" itemLabel = "Publica" /> 
-		   			<f:selectItem itemValue = "2" itemLabel = "Privada" /> 
-				</h:selectOneMenu>
-				
-				<h:outputLabel for="tipoTarea">Tipo:</h:outputLabel>
-				<h:selectOneMenu value = "#{tareaBean.tipoTarea}"> 
-		   			<f:selectItem itemValue = "1" itemLabel = "Editable" /> 
-		   			<f:selectItem itemValue = "2" itemLabel = "Solo lectura" /> 
-				</h:selectOneMenu>
-				
-				<h:outputLabel for="estado">Estado:</h:outputLabel>
-				<h:selectOneMenu value = "#{tareaBean.estadoId}"> 
-		   			<f:selectItem itemValue = "1" itemLabel = "Pendiente" /> 
-		   			<f:selectItem itemValue = "2" itemLabel = "Completa" /> 
-				</h:selectOneMenu>
-					
-			</h:panelGrid>
-			<h:commandButton value="Crear" action="#{tareaBean.guardarTarea(sessionScope.usuario.usuarioId)}" class="btn btn-primary"></h:commandButton>				
-			<h:link value="Atrás" outcome="tareas" class="btn btn-primary"/>
-		</h:form>
+						<h:outputLabel for="descripcion">Descripcion:</h:outputLabel>
+						<h:inputTextarea cols="30" rows="5" type="descripcion" value="#{tareaBean.descripcion}" id="descripcion"></h:inputTextarea>
+						
+						<h:outputLabel for="privacidad">Privacidad:</h:outputLabel>
+						<h:selectOneMenu value = "#{tareaBean.privacidad}"> 
+				   			<f:selectItem itemValue = "1" itemLabel = "Publica" /> 
+				   			<f:selectItem itemValue = "2" itemLabel = "Privada" /> 
+						</h:selectOneMenu>
+						
+						<h:outputLabel for="tipoTarea">Tipo:</h:outputLabel>
+						<h:selectOneMenu value = "#{tareaBean.tipoTarea}"> 
+				   			<f:selectItem itemValue = "1" itemLabel = "Editable" /> 
+				   			<f:selectItem itemValue = "2" itemLabel = "Solo lectura" /> 
+						</h:selectOneMenu>
+						
+						<h:outputLabel for="estado">Estado:</h:outputLabel>
+						<h:selectOneMenu value = "#{tareaBean.estadoId}"> 
+				   			<f:selectItem itemValue = "1" itemLabel = "Pendiente" /> 
+				   			<f:selectItem itemValue = "2" itemLabel = "Completa" /> 
+						</h:selectOneMenu>
+							
+					</h:panelGrid>
+					<br></br>
+					<h:commandButton value="Crear" action="#{tareaBean.guardarTarea(sessionScope.usuario.usuarioId)}" class="btn btn-primary"></h:commandButton>				
+					<h:link value="Atrás" outcome="tareas" class="btn btn-default"/></center>
+				</div>
+			</h:form>
+		</div>
 	</h:body>
 </html>

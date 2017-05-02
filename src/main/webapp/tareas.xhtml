@@ -22,7 +22,7 @@
 	
 		<ui:include src="/header.xhtml" />
 	
-		<center><h2>Listado de Tareas</h2></center>
+		<h2 class="text-center">Listado de Tareas</h2>
 		<br>
 		</br>
 	    <h:form>
@@ -64,8 +64,8 @@
 				</h:column>
 			    <h:column>
 					<f:facet name="header">Acción</f:facet>
-		    	  	<h:commandButton value="Eliminar"  action="#{tareaBean.eliminarTarea(tarea.tareaId)}" class="btn btn-primary" rendered="#{tarea.usuarioAlta == sessionScope.usuario.usuarioId}"></h:commandButton>
-		    	  	<h:commandButton value="Editar"  action="#{tareaBean.editarTarea(tareaBean.tareaId, tareaBean.titulo, tareaBean.descripcion, tarea.privacidad, tarea.tipoTarea)}" class="btn btn-primary" rendered="#{tarea.usuarioAlta == sessionScope.usuario.usuarioId or (tarea.usuarioAlta != sessionScope.usuario.usuarioId and (tarea.privacidad == 1 and tarea.tipoTarea == 1))}"></h:commandButton>
+		    	  	<h:commandButton value="Eliminar"  action="#{tareaBean.eliminarTarea(tarea.tareaId)}" class="btn btn-danger" rendered="#{tarea.usuarioAlta == sessionScope.usuario.usuarioId}"></h:commandButton>
+		    	  	<h:commandButton value="Editar"  action="#{tareaBean.editarTarea(tarea.tareaId, tarea.titulo, tarea.descripcion, tarea.privacidad, tarea.tipoTarea, tarea.estadoId)}" class="btn btn-info" rendered="#{tarea.usuarioAlta == sessionScope.usuario.usuarioId or (tarea.usuarioAlta != sessionScope.usuario.usuarioId and (tarea.privacidad == 1 and tarea.tipoTarea == 1))}"></h:commandButton>
 			   </h:column>
 			</h:dataTable></center>
 		</h:form>

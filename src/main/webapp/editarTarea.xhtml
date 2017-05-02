@@ -22,41 +22,44 @@
 	
 		<ui:include src="/header.xhtml" />
 		
-		<h2>Editar Tarea</h2>
-		
-		<h:form id="formId" name="formId">
+		<h2 class="text-center">Editar Tarea</h2>
+		<div class="text-center">
+			<h:form id="formId" name="formId">
+				<div class="col-xs-6 col-xs-offset-3">
+					<center><h:panelGrid columns="2" border="0">							
+						<h:outputLabel for="tareaId">Tarea:</h:outputLabel>
+						<h:outputText value="#{tareaBean.tareaId}" id="tareaId"></h:outputText>
+									
+						<h:outputLabel for="titulo">Titulo:</h:outputLabel>
+						<h:inputText value="#{tareaBean.titulo}" id="titulo"></h:inputText>
 			
-			<h:panelGrid columns="2" border="0">							
-				<h:outputLabel for="tareaId">Tarea</h:outputLabel>
-				<h:inputText value="#{tareaBean.tareaId}" id="tareaId"></h:inputText>
+						<h:outputLabel for="descripcion">Descripcion:</h:outputLabel>
+						<h:inputTextarea cols="30" rows="5" type="descripcion" value="#{tareaBean.descripcion}" id="descripcion"></h:inputTextarea>
+						
+						<h:outputLabel for="privacidad">Privacidad:</h:outputLabel>
+						<h:selectOneMenu value = "#{tareaBean.privacidad}"> 
+				   			<f:selectItem itemValue = "1" itemLabel = "Publica" /> 
+				   			<f:selectItem itemValue = "2" itemLabel = "Privada" /> 
+						</h:selectOneMenu>
+						
+						<h:outputLabel for="tipoTarea">Tipo:</h:outputLabel>
+						<h:selectOneMenu value = "#{tareaBean.tipoTarea}"> 
+				   			<f:selectItem itemValue = "1" itemLabel = "Editable" /> 
+				   			<f:selectItem itemValue = "2" itemLabel = "Solo lectura" /> 
+						</h:selectOneMenu>
+						
+						<h:outputLabel for="estado">Estado:</h:outputLabel>
+						<h:selectOneMenu value = "#{tareaBean.estadoId}"> 
+				   			<f:selectItem itemValue = "1" itemLabel = "Pendiente" /> 
+				   			<f:selectItem itemValue = "2" itemLabel = "Completa" /> 
+						</h:selectOneMenu>
 							
-				<h:outputLabel for="titulo">Titulo</h:outputLabel>
-				<h:inputText value="#{tareaBean.titulo}" id="titulo"></h:inputText>
-	
-				<h:outputLabel for="descripcion">Descripcion:</h:outputLabel>
-				<h:inputTextarea cols="30" rows="5" type="descripcion" value="#{tareaBean.descripcion}" id="descripcion"></h:inputTextarea>
-				
-				<h:outputLabel for="privacidad">Privacidad:</h:outputLabel>
-				<h:selectOneMenu value = "#{tareaBean.privacidad}"> 
-		   			<f:selectItem itemValue = "1" itemLabel = "Publica" /> 
-		   			<f:selectItem itemValue = "2" itemLabel = "Privada" /> 
-				</h:selectOneMenu>
-				
-				<h:outputLabel for="tipoTarea">Tipo:</h:outputLabel>
-				<h:selectOneMenu value = "#{tareaBean.tipoTarea}"> 
-		   			<f:selectItem itemValue = "1" itemLabel = "Editable" /> 
-		   			<f:selectItem itemValue = "2" itemLabel = "Solo lectura" /> 
-				</h:selectOneMenu>
-				
-			<!--	<h:outputLabel for="estado">Estado:</h:outputLabel>
-				<h:selectOneMenu value = "#{tareaBean.estadoId}"> 
-		   			<f:selectItem itemValue = "1" itemLabel = "Pendiente" /> 
-		   			<f:selectItem itemValue = "2" itemLabel = "Completa" /> 
-				</h:selectOneMenu>-->
-					
-			</h:panelGrid>
-			<h:commandButton value="Guardar cambios" action="#{tareaBean.update(tareaBean.titulo, tareaBean.descripcion, tareaBean.privacidad, tareaBean.tipoTarea, tareaBean.estadoId)}" class="btn btn-primary"></h:commandButton>				
-			<h:link value="Atrás" outcome="tareas" class="btn btn-primary"/>
-		</h:form>
+					</h:panelGrid>
+					<br></br>
+					<h:commandButton value="Guardar cambios" action="#{tareaBean.actualizarTarea(tareaBean.titulo, tareaBean.descripcion, tareaBean.privacidad, tareaBean.tipoTarea, tareaBean.estadoId)}" class="btn btn-primary"></h:commandButton>				
+					<h:link value="Atrás" outcome="tareas" class="btn btn-default"/></center>
+				</div>
+			</h:form>
+		</div>
 	</h:body>
 </html>

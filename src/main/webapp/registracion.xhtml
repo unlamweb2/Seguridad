@@ -18,10 +18,10 @@
 	
 		<ui:include src="header.xhtml" />
 	
-		<div>
-			<h:form>
-				<center><h2>Registración</h2></center>
+		<h:form>
+			<h2 class="text-center">Registración</h2>
 				
+			<div class="col-xs-6 col-xs-offset-3">
 				<div class="form-group">	
 					<h:outputText value="Nombre"></h:outputText><br></br>
 					<h:inputText value="#{usuarioBean.nombre}" class="form-control"></h:inputText>
@@ -39,8 +39,8 @@
 					<h:inputSecret value="#{usuarioBean.password}" class="form-control"></h:inputSecret>
 				</div>
 				
-				<center><h:commandButton value="Registrarse" action="#{usuarioBean.guardarUsuario}" class="btn btn-primary"></h:commandButton></center>
-			</h:form>
-		</div>
+				<center><h:commandButton value="Registrarse" action="#{usuarioBean.guardarUsuario}" class="btn btn-success"></h:commandButton></center>
+			</div>
+		</h:form>
 	</h:body>
 </html>
