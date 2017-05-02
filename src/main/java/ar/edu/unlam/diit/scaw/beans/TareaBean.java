@@ -38,9 +38,9 @@ public class TareaBean implements Serializable {
 		super();
 	}
 	
-	public String guardarTarea() {
+	public String guardarTarea(Integer usuarioId) {
 		Tarea tarea = buildTarea();
-		service.guardarTarea(tarea);
+		service.guardarTarea(tarea, usuarioId);
 		return "tareas";
 	}
 	
