@@ -54,7 +54,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		
 	@Override
 	public void eliminarUsuario(Integer usuarioId) {
-		String sql = "DELETE FROM Usuarios WHERE usuarioId LIKE :usuarioId";
+		String sql = "UPDATE Usuarios SET Activo = false WHERE usuarioId LIKE :usuarioId";
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("usuarioId", usuarioId);
 		jdbcTemplate.update(sql, params);	

@@ -48,7 +48,7 @@ CREATE TABLE Tareas (
   FechaAlta	DATE,
 );
 
-ALTER TABLE Tareas ADD CONSTRAINT id_usuario_tarea FOREIGN KEY (EstadoId) REFERENCES Usuarios(UsuarioId);
+ALTER TABLE Tareas ADD CONSTRAINT id_usuario_tarea FOREIGN KEY (UsuarioAlta) REFERENCES Usuarios(UsuarioId);
 ALTER TABLE Tareas ADD CONSTRAINT id_estado_tarea FOREIGN KEY (EstadoId) REFERENCES Estados(EstadoId);
 ALTER TABLE Tareas ADD CONSTRAINT id_tipo_tarea FOREIGN KEY (TipoTarea) REFERENCES TiposTarea(TipoTareaId);
 ALTER TABLE Tareas ADD CONSTRAINT id_privacidad_tarea FOREIGN KEY (Privacidad) REFERENCES Privacidad(PrivacidadId);

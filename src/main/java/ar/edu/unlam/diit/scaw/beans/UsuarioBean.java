@@ -8,6 +8,7 @@ import java.util.List;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
+import org.apache.xpath.operations.And;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -79,11 +80,15 @@ public class UsuarioBean implements Serializable {
             return "";
         } else {
             context.getExternalContext().getSessionMap().put("usuario", usuario);
-            if (((Usuario) usuario).getRolId() == 1) {
-				return "usuarios";	// Administrador muestro usuarios					
-			} else {
-				return "tareas";	// Usuarios muestro tareas
-			}
+            if (usuario.getActivo() == true){
+	            if (((Usuario) usuario).getRolId() == 1) {
+					return "usuarios";	// Administrador muestro usuarios					
+				} else {
+					return "tareas";	// Usuarios muestro tareas
+				} else{
+					return "login";
+				}
+            }
         }
     }
 	
