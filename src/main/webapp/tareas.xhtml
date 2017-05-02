@@ -21,8 +21,12 @@
 		<center><h2>Listado de Tareas</h2></center>
 		<br>
 		</br>
-
+	    <h:form>
 		<center><h:dataTable value="#{tareaBean.listarTareas()}" var="tarea" styleClass="order-table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row">
+			<h:column>
+				<f:facet name="header">ID</f:facet>    				
+	      		#{tarea.tareaId}
+	  		</h:column>
 			<h:column>
 				<f:facet name="header">Titulo</f:facet>    				
 			   	#{tarea.titulo}
@@ -54,6 +58,10 @@
 				<f:facet name="header">Creación</f:facet>
 			 	#{tarea.fechaAlta} 	    	  				
 			</h:column>
+		    <h:column>
+				<f:facet name="header">Acción</f:facet>
+	    	  	<h:commandButton value="Eliminar"  action="#{tareaBean.eliminarTarea(tarea.tareaId)}" class="btn btn-primary"></h:commandButton>
+		   </h:column>
 		</h:dataTable></center>
 		<br>
 	    </br>
@@ -63,5 +71,6 @@
 		<br>
 	    </br>	
 		<h:link class="btn btn-primary btn-block" value="Registrarme" outcome="registracion" />
+	 </h:form>
 	</h:body>
 </html>
