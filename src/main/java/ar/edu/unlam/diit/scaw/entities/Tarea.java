@@ -11,7 +11,6 @@ public class Tarea {
 	private Integer privacidad;
 	private Integer tipoTarea;
 	private Integer usuarioAlta;
-	//private String creadoPor;
 	private Date fechaAlta = new Date();
 	
 	public Tarea(){
@@ -72,14 +71,6 @@ public class Tarea {
 	public void setUsuarioAlta(Integer usuarioAlta){
 		this.usuarioAlta = usuarioAlta;
 	}
-	
-	/*public String getCreadoPor() {
-		return creadoPor;
-	}
-
-	public void setCreadoPor(String creadoPor) {
-		this.creadoPor = creadoPor;
-	}*/
 	
 	public Date getFechaAlta(){
 		return fechaAlta;

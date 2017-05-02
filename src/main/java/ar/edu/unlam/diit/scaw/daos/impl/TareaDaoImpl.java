@@ -95,7 +95,6 @@ public class TareaDaoImpl implements TareaDao {
 			tarea.setPrivacidad(rs.getInt("privacidad"));
 			tarea.setTipoTarea(rs.getInt("tipoTarea"));
 			tarea.setUsuarioAlta(rs.getInt("usuarioAlta"));
-			//tarea.setCreadoPor(rs.getString("creadoPor"));
 			tarea.setFechaAlta(rs.getDate("fechaAlta"));
 			return tarea;
 		}
