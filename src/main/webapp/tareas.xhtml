@@ -61,6 +61,7 @@
 		    <h:column>
 				<f:facet name="header">Acción</f:facet>
 	    	  	<h:commandButton value="Eliminar"  action="#{tareaBean.eliminarTarea(tarea.tareaId)}" class="btn btn-primary"></h:commandButton>
+	    	  	<h:commandButton value="Editar"  action="#{tareaBean.editarTarea(tareaBean.tareaId, tareaBean.titulo, tareaBean.descripcion, tareaBean.privacidad, tareaBean.tipoTarea, tareaBean.estadoId, tareaBean.usuarioAlta)}" class="btn btn-primary"></h:commandButton>
 		   </h:column>
 		</h:dataTable></center>
 		<br>

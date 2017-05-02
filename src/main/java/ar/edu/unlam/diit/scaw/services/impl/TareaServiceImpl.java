@@ -27,6 +27,10 @@ public class TareaServiceImpl implements TareaService {
 	public void eliminarTarea(Integer tareaId) {
 		tareaDao.eliminarTarea(tareaId);
 	}
+	
+	public void actualizarTarea(String tareaId, String titulo, String descripcion, Integer privacidad, Integer tipoTarea, Integer estadoId) {
+		tareaDao.actualizarTarea(tareaId, titulo, descripcion, privacidad, tipoTarea, estadoId);
+	}
 
 	public TareaDao getTareaDao() {
 		return tareaDao;

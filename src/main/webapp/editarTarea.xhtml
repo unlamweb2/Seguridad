@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	>
+
+	<h:head>
+		<title>Seguridad</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/estilos.css" />
+	</h:head>
+
+	<h:body>
+		<h2>Nueva Tarea</h2>
+		
+		<h:form id="formId" name="formId">
+			
+			<h:inputHidden value="#{tareaBean.tareaId}" id="tareaId" name="formId:tareaId"></h:inputHidden>
+			
+			<h:panelGrid columns="2" border="0">
+				<h:outputLabel for="titulo">Titulo</h:outputLabel>
+				<h:inputText value="#{tareaBean.titulo}" id="titulo"></h:inputText>
+	
+				<h:outputLabel for="descripcion">Descripcion:</h:outputLabel>
+				<h:inputTextarea cols="30" rows="5" type="descripcion" value="#{tareaBean.descripcion}" id="descripcion"></h:inputTextarea>
+				
+				<h:outputLabel for="privacidad">Privacidad:</h:outputLabel>
+				<h:selectOneMenu value = "#{tareaBean.privacidad}"> 
+		   			<f:selectItem itemValue = "1" itemLabel = "Publica" /> 
+		   			<f:selectItem itemValue = "2" itemLabel = "Privada" /> 
+				</h:selectOneMenu>
+				
+				<h:outputLabel for="tipoTarea">Tipo:</h:outputLabel>
+				<h:selectOneMenu value = "#{tareaBean.tipoTarea}"> 
+		   			<f:selectItem itemValue = "1" itemLabel = "Editable" /> 
+		   			<f:selectItem itemValue = "2" itemLabel = "Solo lectura" /> 
+				</h:selectOneMenu>
+				
+				<h:outputLabel for="estado">Estado:</h:outputLabel>
+				<h:selectOneMenu value = "#{tareaBean.estadoId}"> 
+		   			<f:selectItem itemValue = "1" itemLabel = "Pendiente" /> 
+		   			<f:selectItem itemValue = "2" itemLabel = "Completa" /> 
+				</h:selectOneMenu>
+					
+			</h:panelGrid>
+			<h:commandButton value="Guardar cambios" action="#{tareaBean.update(tareaBean.titulo, tareaBean.descripcion, tareaBean.privacidad, tareaBean.tipoTarea, tareaBean.estadoId)}" class="btn btn-primary"></h:commandButton>				
+			<br></br>
+			<h:link value="Atrás" outcome="tareas" />
+		</h:form>
+	</h:body>
+</html>

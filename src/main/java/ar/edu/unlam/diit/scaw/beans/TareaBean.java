@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.faces.bean.ManagedBean;
 
 import org.springframework.context.ApplicationContext;
@@ -19,6 +21,7 @@ public class TareaBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	private Integer tareaId = null;
 	private String titulo = null;
 	private String descripcion = null;
 	private Integer estadoId = null;
@@ -51,8 +54,28 @@ public class TareaBean implements Serializable {
 		return "tareas";
 		}
 	
+	public String editarTarea(String tareaId, String titulo, String descripcion, Integer privacidad, Integer tipoTarea, Integer estadoId, Integer usuarioAlta) {		
+		this.setTareaId(Integer.parseInt(tareaId));
+		this.setTitulo(titulo);
+		this.setDescripcion(descripcion);		
+		this.setTipoTarea(tipoTarea);
+		this.setEstadoId(estadoId);
+		this.setUsuarioAlta(usuarioAlta);
+		
+		return "editarTarea";
+	}
+	
+	public String actualizarTarea(String titulo, String descripcion, Integer privacidad, Integer tipoTarea, Integer estadoId) {	
+		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+	    String tareaId = ec.getRequestParameterMap().get("formId:tareaId");
+		service.actualizarTarea(tareaId, titulo, descripcion, privacidad, tipoTarea, estadoId);
+		
+		return "tareas";
+	}
+	
 	private Tarea buildTarea() {
 		Tarea tarea = new Tarea();
+		tarea.setTareaId(this.tareaId);
 		tarea.setTitulo(this.titulo);
 		tarea.setDescripcion(this.descripcion);
 		tarea.setEstadoId(this.estadoId);
@@ -64,8 +87,9 @@ public class TareaBean implements Serializable {
 		return tarea;
 	}
 
-	public TareaBean(String titulo, String descripcion, Integer estadoId, Integer privacidad, Integer tipoTarea, Integer usuarioAlta, Date fechaAlta) {
+	public TareaBean(Integer tareaId, String titulo, String descripcion, Integer estadoId, Integer privacidad, Integer tipoTarea, Integer usuarioAlta, Date fechaAlta) {
 		super();
+		this.tareaId = tareaId;
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.estadoId = estadoId;
@@ -73,6 +97,14 @@ public class TareaBean implements Serializable {
 		this.tipoTarea = tipoTarea;
 		this.usuarioAlta = usuarioAlta;
 		this.fechaAlta = fechaAlta;
+	}
+	
+	public Integer getTareaId(){
+		return tareaId;
+	}
+	
+	public void setTareaId(Integer tareaId){
+		this.tareaId = tareaId;
 	}
 	
 	public String getTitulo() {

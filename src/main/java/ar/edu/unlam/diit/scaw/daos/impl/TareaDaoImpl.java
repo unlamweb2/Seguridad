@@ -53,6 +53,21 @@ public class TareaDaoImpl implements TareaDao {
 		jdbcTemplate.update(sql, params);		
 	}
 	
+	@Override
+	public void actualizarTarea(String tareaId, String titulo, String descripcion, Integer privacidad, Integer tipoTarea, Integer estadoId) {
+
+		String sql = "UPDATE Tareas SET titulo = :titulo, descripcion = :descripcion, privacidad = :privacidad, tipoTarea = :tipoTarea, estadoId = :estadoId WHERE tareaId = :tareaId";
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("tareaId", Integer.parseInt(tareaId));
+		params.put("titulo", titulo);
+		params.put("descripcion", descripcion);
+		params.put("privacidad", privacidad);
+		params.put("tipoTarea", tipoTarea);
+		params.put("estadoId", estadoId);		
+		
+		jdbcTemplate.update(sql, params);
+	}
+	
 	public NamedParameterJdbcTemplate getJdbcTemplate() {
 		return jdbcTemplate;
 	}
