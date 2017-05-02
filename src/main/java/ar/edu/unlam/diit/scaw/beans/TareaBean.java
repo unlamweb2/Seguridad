@@ -49,6 +49,11 @@ public class TareaBean implements Serializable {
 		return list;
 	}
 	
+	public List<Tarea> listarTareasAnonimo() {
+		List<Tarea> listAno = service.listarTareasAnonimo();
+		return listAno;
+	}
+	
 	public String eliminarTarea(Integer tareaId) {
 		service.eliminarTarea(tareaId);				
 		return "tareas";

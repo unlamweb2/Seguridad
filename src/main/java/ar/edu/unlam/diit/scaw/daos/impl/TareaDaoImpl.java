@@ -44,6 +44,14 @@ public class TareaDaoImpl implements TareaDao {
 		List<Tarea> result = jdbcTemplate.query(sql, params, new TareaMapper());
 		return result;
 	}
+	
+	@Override
+	public List<Tarea> listarTareasAnonimo() {
+		String sql = "SELECT * FROM Tareas where privacidad=1";
+		Map<String, Object> params = new HashMap<String, Object>();
+		List<Tarea> resultAno = jdbcTemplate.query(sql, params, new TareaMapper());
+		return resultAno;
+	}
 
 	@Override
 	public void eliminarTarea(Integer tareaId) {

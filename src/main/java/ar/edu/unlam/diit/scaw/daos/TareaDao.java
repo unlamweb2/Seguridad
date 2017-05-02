@@ -14,4 +14,6 @@ public interface TareaDao {
 	
 	public void actualizarTarea(String tareaId, String titulo, String descripcion, Integer privacidad, Integer tipoTarea, Integer estadoId);
 
+	public List<Tarea> listarTareasAnonimo();
+
 }

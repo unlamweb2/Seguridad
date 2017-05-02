@@ -24,6 +24,11 @@ public class TareaServiceImpl implements TareaService {
 	}
 	
 	@Override
+	public List<Tarea> listarTareasAnonimo() {
+		return tareaDao.listarTareasAnonimo();
+	}
+	
+	@Override
 	public void eliminarTarea(Integer tareaId) {
 		tareaDao.eliminarTarea(tareaId);
 	}
