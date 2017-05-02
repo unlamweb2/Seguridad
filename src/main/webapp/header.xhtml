@@ -18,30 +18,29 @@
 	
 		<!--Anónimo-->
 		<h:panelGroup rendered="#{sessionScope.usuario.rolId == NULL}">
-			<h:form>
+			<center><h:form>
+				<h:link class="btn btn-default" value="Inicio" outcome="index" />
 				<h:link class="btn btn-default" value="Registrarse" outcome="registracion" />
 				<h:link class="btn btn-default" value="Iniciar Sesión" outcome="login" />
-			</h:form>
+			</h:form></center>
 		</h:panelGroup>
 		
 		<!--Administrador-->
 	    <h:panelGroup rendered="#{sessionScope.usuario.rolId == 1}">
-	    	<h:outputLabel value="Bienvenido #{sessionScope.usuario.nombre}" class="text-right"></h:outputLabel>
-	    	<h:form padding="top">
+	    	<h:outputLabel value="Bienvenido #{sessionScope.usuario.nombre}"></h:outputLabel>
+	    	<center><h:form padding="top">
 	    		<h:commandLink id="logout" value="Cerrar Sesión" action="#{usuarioBean.logout}" class="btn btn-default"/>
-	    	</h:form>
+	    	</h:form></center>
 		</h:panelGroup>
 	    
 		<!--Usuario-->
 		<h:panelGroup rendered="#{sessionScope.usuario.rolId == 2}">
-			<h:panelGrid>
-				<h:outputLabel align="left" value="Bienvenido #{sessionScope.usuario.nombre}"></h:outputLabel>
+			<h:outputLabel value="Bienvenido #{sessionScope.usuario.nombre}"></h:outputLabel>
+			<center><h:form padding="top">
 				<h:link class="btn btn-default" value="Listado Tareas" outcome="tareas" />
 				<h:link class="btn btn-default" value="Crear Tarea" outcome="altaTarea" />
-				<h:form padding="top">
-					<h:commandLink id="logout" value="Cerrar Sesión" action="#{usuarioBean.logout}" class="btn btn-default"/> 
-				</h:form>	  		
-			</h:panelGrid>
+				<h:commandLink id="logout" value="Cerrar Sesión" action="#{usuarioBean.logout}" class="btn btn-default"/> 
+			</h:form></center>
 		</h:panelGroup>
 				
 	</h:body>
