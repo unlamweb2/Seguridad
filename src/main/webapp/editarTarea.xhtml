@@ -16,10 +16,15 @@
 	</h:head>
 
 	<h:body>
-		<h2>Nueva Tarea</h2>
+		<f:metadata>
+    		<f:event type="preRenderView" listener="#{usuarioBean.verificarSesion}" />
+		</f:metadata>
+	
+		<ui:include src="/header.xhtml" />
+		
+		<h2>Editar Tarea</h2>
 		
 		<h:form id="formId" name="formId">
-			
 			
 			<h:panelGrid columns="2" border="0">							
 				<h:outputLabel for="tareaId">Tarea</h:outputLabel>
@@ -51,8 +56,7 @@
 					
 			</h:panelGrid>
 			<h:commandButton value="Guardar cambios" action="#{tareaBean.update(tareaBean.titulo, tareaBean.descripcion, tareaBean.privacidad, tareaBean.tipoTarea, tareaBean.estadoId)}" class="btn btn-primary"></h:commandButton>				
-			<br></br>
-			<h:link value="Atrás" outcome="tareas" />
+			<h:link value="Atrás" outcome="tareas" class="btn btn-primary"/>
 		</h:form>
 	</h:body>
 </html>

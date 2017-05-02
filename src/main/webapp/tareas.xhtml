@@ -16,62 +16,58 @@
 	</h:head>
 
 	<h:body>
+		<f:metadata>
+    		<f:event type="preRenderView" listener="#{usuarioBean.verificarSesion}" />
+		</f:metadata>
+	
 		<ui:include src="/header.xhtml" />
 	
 		<center><h2>Listado de Tareas</h2></center>
 		<br>
 		</br>
 	    <h:form>
-		<center><h:dataTable value="#{tareaBean.listarTareas()}" var="tarea" styleClass="order-table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row">
-			<h:column>
-				<f:facet name="header">ID</f:facet>    				
-	      		#{tarea.tareaId}
-	  		</h:column>
-			<h:column>
-				<f:facet name="header">Titulo</f:facet>    				
-			   	#{tarea.titulo}
-			</h:column> 
-			<h:column>
-				<f:facet name="header">Descripcion</f:facet>
-			   	#{tarea.descripcion}
-			</h:column>
-			<h:column>
-				<f:facet name="header">Privacidad</f:facet>
-				<h:outputLabel value="Publica"	rendered="#{tarea.privacidad == 1}" />
-				<h:outputLabel value="Privada" rendered="#{tarea.privacidad == 2}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Tipo</f:facet>
-				<h:outputLabel value="Editable"	rendered="#{tarea.tipoTarea == 1}" />
-				<h:outputLabel value="Solo lectura" rendered="#{tarea.tipoTarea == 2}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Estado</f:facet>
-				<h:outputLabel value="Pendiente" rendered="#{tarea.estadoId == 1}" />
-				<h:outputLabel value="Completa" rendered="#{tarea.estadoId == 2}" />
-			</h:column>		
-			<h:column>
-				<f:facet name="header">Autor</f:facet>
-			 	#{tarea.usuarioAlta} 	    	  				
-			</h:column>
-			<h:column>
-				<f:facet name="header">Creación</f:facet>
-			 	#{tarea.fechaAlta} 	    	  				
-			</h:column>
-		    <h:column>
-				<f:facet name="header">Acción</f:facet>
-	    	  	<h:commandButton value="Eliminar"  action="#{tareaBean.eliminarTarea(tarea.tareaId)}" class="btn btn-primary" rendered="#{tarea.usuarioAlta == sessionScope.usuario.usuarioId}"></h:commandButton>
-	    	  	<h:commandButton value="Editar"  action="#{tareaBean.editarTarea(tareaBean.tareaId, tareaBean.titulo, tareaBean.descripcion, tarea.privacidad, tarea.tipoTarea)}" class="btn btn-primary" rendered="#{tarea.usuarioAlta == sessionScope.usuario.usuarioId or (tarea.usuarioAlta != sessionScope.usuario.usuarioId and (tarea.privacidad == 1 and tarea.tipoTarea == 1))}"></h:commandButton>
-		   </h:column>
-		</h:dataTable></center>
-		<br>
-	    </br>
-        <br>
-	    </br>	 	       	
-		<h:link class="btn btn-primary btn-block" value="Página Principal" outcome="index" />
-		<br>
-	    </br>	
-		<h:link class="btn btn-primary btn-block" value="Registrarme" outcome="registracion" />
-	 </h:form>
+			<center><h:dataTable value="#{tareaBean.listarTareas()}" var="tarea" styleClass="order-table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row">
+				<h:column>
+					<f:facet name="header">ID</f:facet>    				
+		      		#{tarea.tareaId}
+		  		</h:column>
+				<h:column>
+					<f:facet name="header">Titulo</f:facet>    				
+				   	#{tarea.titulo}
+				</h:column> 
+				<h:column>
+					<f:facet name="header">Descripcion</f:facet>
+				   	#{tarea.descripcion}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Privacidad</f:facet>
+					<h:outputLabel value="Publica"	rendered="#{tarea.privacidad == 1}" />
+					<h:outputLabel value="Privada" rendered="#{tarea.privacidad == 2}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Tipo</f:facet>
+					<h:outputLabel value="Editable"	rendered="#{tarea.tipoTarea == 1}" />
+					<h:outputLabel value="Solo lectura" rendered="#{tarea.tipoTarea == 2}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Estado</f:facet>
+					<h:outputLabel value="Pendiente" rendered="#{tarea.estadoId == 1}" />
+					<h:outputLabel value="Completa" rendered="#{tarea.estadoId == 2}" />
+				</h:column>		
+				<h:column>
+					<f:facet name="header">Autor</f:facet>
+				 	#{tarea.usuarioAlta} 	    	  				
+				</h:column>
+				<h:column>
+					<f:facet name="header">Creación</f:facet>
+				 	#{tarea.fechaAlta} 	    	  				
+				</h:column>
+			    <h:column>
+					<f:facet name="header">Acción</f:facet>
+		    	  	<h:commandButton value="Eliminar"  action="#{tareaBean.eliminarTarea(tarea.tareaId)}" class="btn btn-primary" rendered="#{tarea.usuarioAlta == sessionScope.usuario.usuarioId}"></h:commandButton>
+		    	  	<h:commandButton value="Editar"  action="#{tareaBean.editarTarea(tareaBean.tareaId, tareaBean.titulo, tareaBean.descripcion, tarea.privacidad, tarea.tipoTarea)}" class="btn btn-primary" rendered="#{tarea.usuarioAlta == sessionScope.usuario.usuarioId or (tarea.usuarioAlta != sessionScope.usuario.usuarioId and (tarea.privacidad == 1 and tarea.tipoTarea == 1))}"></h:commandButton>
+			   </h:column>
+			</h:dataTable></center>
+		</h:form>
 	</h:body>
 </html>

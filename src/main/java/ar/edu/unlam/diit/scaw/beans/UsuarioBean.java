@@ -1,5 +1,6 @@
 package ar.edu.unlam.diit.scaw.beans;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -79,16 +80,22 @@ public class UsuarioBean implements Serializable {
         } else {
             context.getExternalContext().getSessionMap().put("usuario", usuario);
             if (((Usuario) usuario).getRolId() == 1) {
-				return "usuarios";	// Administrador -> muestro usuarios					
+				return "usuarios";	// Administrador muestro usuarios					
 			} else {
-				return "tareas";	// Usuarios -> muestro tareas
+				return "tareas";	// Usuarios muestro tareas
 			}
         }
     }
-		
+	
 	public String logout() {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		return "login";
+	}
+	
+	public void verificarSesion() throws IOException{
+		if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario") == null) {
+			FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
+		}
 	}
 	
 	private Usuario buildUsuario() {

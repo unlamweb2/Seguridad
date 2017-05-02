@@ -16,6 +16,12 @@
 	</h:head>
 
 	<h:body>
+		<f:metadata>
+    		<f:event type="preRenderView" listener="#{usuarioBean.verificarSesion}" />
+		</f:metadata>
+	
+		<ui:include src="/header.xhtml" />
+	
 		<h2>Nueva Tarea</h2>
 		
 		<h:form>
@@ -49,8 +55,7 @@
 					
 			</h:panelGrid>
 			<h:commandButton value="Crear" action="#{tareaBean.guardarTarea(sessionScope.usuario.usuarioId)}" class="btn btn-primary"></h:commandButton>				
-			<br></br>
-			<h:link value="Atrás" outcome="tareas" />
+			<h:link value="Atrás" outcome="tareas" class="btn btn-primary"/>
 		</h:form>
 	</h:body>
 </html>
