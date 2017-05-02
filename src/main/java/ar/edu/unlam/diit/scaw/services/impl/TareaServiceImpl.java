@@ -14,8 +14,8 @@ public class TareaServiceImpl implements TareaService {
 	TareaDao tareaDao;
 	
 	@Override
-	public void guardarTarea(Tarea tarea) {
-		tareaDao.guardarTarea(tarea);
+	public void guardarTarea(Tarea tarea, Integer usuarioId) {
+		tareaDao.guardarTarea(tarea, usuarioId);
 	}
 
 	@Override

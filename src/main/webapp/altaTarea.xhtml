@@ -48,7 +48,7 @@
 				</h:selectOneMenu>
 					
 			</h:panelGrid>
-			<h:commandButton value="Crear" action="#{tareaBean.guardarTarea}" class="btn btn-primary"></h:commandButton>				
+			<h:commandButton value="Crear" action="#{tareaBean.guardarTarea(sessionScope.usuario.usuarioId)}" class="btn btn-primary"></h:commandButton>				
 			<br></br>
 			<h:link value="Atrás" outcome="tareas" />
 		</h:form>

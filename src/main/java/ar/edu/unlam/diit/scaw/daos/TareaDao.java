@@ -6,7 +6,7 @@ import ar.edu.unlam.diit.scaw.entities.Tarea;;
 
 public interface TareaDao {
 
-	public void guardarTarea(Tarea tarea);
+	public void guardarTarea(Tarea tarea, Integer usuarioId);
 
 	public List<Tarea> listarTareas();
 	

@@ -23,7 +23,7 @@ public class TareaDaoImpl implements TareaDao {
 	}
 
 	@Override
-	public void guardarTarea(Tarea tarea) {
+	public void guardarTarea(Tarea tarea, Integer usuarioId) {
 		String sql = "INSERT INTO Tareas (Titulo, Descripcion, EstadoId, Privacidad, TipoTarea, UsuarioAlta, FechaAlta) VALUES (:titulo, :descripcion, :estadoId, :privacidad, :tipoTarea, :usuarioAlta, :fechaAlta)";
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("titulo", tarea.getTitulo());
@@ -31,7 +31,7 @@ public class TareaDaoImpl implements TareaDao {
 		params.put("estadoId", tarea.getEstadoId());
 		params.put("privacidad", tarea.getPrivacidad());
 		params.put("tipoTarea", tarea.getTipoTarea());
-		params.put("usuarioAlta", tarea.getUsuarioAlta());
+		params.put("usuarioAlta", usuarioId);
 		params.put("fechaAlta", tarea.getFechaAlta());
 		jdbcTemplate.update(sql, params);
 
