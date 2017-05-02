@@ -64,11 +64,12 @@
 		   <h:column>
 		         <h:commandButton value="Activar"  action="#{usuarioBean.activarUsuario(usuario.usuarioId, usuario.activo)}" class="btn btn-primary" rendered="#{usuario.activo == false}"></h:commandButton>
 		   
-		   </h:column>
-	     
-	       
+		   </h:column>     
+	     	       
 		</h:dataTable>
-		
+		<br>
+		</br>
+		<h:link class="btn btn-primary btn-block" value="Página Principal" outcome="index" />		
 	 </h:form>
 	</h:body>
 </html>
