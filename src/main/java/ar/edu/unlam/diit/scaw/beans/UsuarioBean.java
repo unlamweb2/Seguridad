@@ -8,7 +8,6 @@ import java.util.List;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
-import org.apache.xpath.operations.And;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -74,7 +73,7 @@ public class UsuarioBean implements Serializable {
         Usuario usuario = service.crearSesion(email, password);
         FacesContext context = FacesContext.getCurrentInstance();
         if (usuario == null) {
-            context.addMessage(null, new FacesMessage("Error al loguearse"));
+            context.addMessage("loginForm", new FacesMessage("El Email o Contraseña ingresados no existen o su Usuario se encuentra Inactivo"));
             email = null;
             password = null;
             return "";

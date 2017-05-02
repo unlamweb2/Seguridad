@@ -18,7 +18,7 @@
 	
 		<ui:include src="header.xhtml" />
 		
-		<h:form>
+		<h:form id="loginForm">
 			<h2 class="text-center">Inicie Sesión</h2>
 				
 			<div class="col-xs-6 col-xs-offset-3">
@@ -30,7 +30,7 @@
 					<h:outputText value="Contraseña"></h:outputText><br></br>
 					<h:inputSecret value="#{usuarioBean.password}" class="form-control"></h:inputSecret>
 				</div>
-					
+				<h:messages styleClass="errorMessage" class="text-danger"/>
 				<div class="text-center">
 					<h:commandButton value="Login" action="#{usuarioBean.login(usuarioBean.email, usuarioBean.password)}" class="btn btn-success"></h:commandButton>
 				</div>

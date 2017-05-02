@@ -39,7 +39,7 @@ public class TareaDaoImpl implements TareaDao {
 
 	@Override
 	public List<Tarea> listarTareas() {
-		String sql = "SELECT * FROM Tareas";
+		String sql = "SELECT T.*,U.nombre FROM Tareas T INNER JOIN Usuarios U ON T.usuarioAlta = U.usuarioId WHERE privacidad=1";
 		Map<String, Object> params = new HashMap<String, Object>();
 		List<Tarea> result = jdbcTemplate.query(sql, params, new TareaMapper());
 		return result;
@@ -56,7 +56,7 @@ public class TareaDaoImpl implements TareaDao {
 	@Override
 	public void actualizarTarea(String tareaId, String titulo, String descripcion, Integer privacidad, Integer tipoTarea, Integer estadoId) {
 
-		String sql = "UPDATE Tareas SET titulo = :titulo, descripcion = :descripcion, privacidad = :privacidad, tipoTarea = :tipoTarea, estadoId = :estadoId WHERE tareaId = :tareaId";
+		String sql = "UPDATE Tareas SET titulo = " + titulo + ", descripcion = " + descripcion + ", privacidad = " + privacidad + ", tipoTarea = " + tipoTarea + ", estadoId = " + estadoId + " WHERE tareaId = " + tareaId + "";
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("tareaId", Integer.parseInt(tareaId));
 		params.put("titulo", titulo);

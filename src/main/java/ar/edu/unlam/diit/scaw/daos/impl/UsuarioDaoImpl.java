@@ -92,7 +92,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	@Override
 	public Usuario crearSesion(String email, String password){
 	
-		String sql = "SELECT * FROM Usuarios WHERE Email = '" + email + "' AND Password = '" + password + "' ";
+		String sql = "SELECT * FROM Usuarios WHERE Email = '" + email + "' AND Password = '" + password + "' AND activo = :activo";
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("usuario", email);
 		params.put("password", password);
