@@ -27,7 +27,13 @@ public class UsuarioServiceImpl implements UsuarioService {
 	public List<Usuario> listarUsuarios() {
 		return usuarioDao.listarUsuarios();
 	}
-
+	
+	@Override
+	public List<Usuario> listarPendientes() {
+		return usuarioDao.listarPendientes();
+	}
+	
+	
 	@Override
 	public void eliminarUsuario(Integer usuarioId) {
 		usuarioDao.eliminarUsuario(usuarioId);
@@ -36,6 +42,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public void activarUsuario(Integer usuarioId, Boolean activo) {
 		usuarioDao.activarUsuario(usuarioId, activo);
+	}
+	
+	@Override
+	public void aprobarUsuario(Integer usuarioId) {
+		usuarioDao.aprobarUsuario(usuarioId);
 	}
 	
 	@Override

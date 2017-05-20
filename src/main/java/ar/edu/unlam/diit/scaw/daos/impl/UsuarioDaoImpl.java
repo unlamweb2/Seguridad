@@ -24,7 +24,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
 	@Override
 	public void guardarUsuario(Usuario usuario) {
-		String sql = "INSERT INTO Usuarios (Nombre, Apellido, Email, Password, RolId, Activo, FechaAlta) VALUES (:nombre, :apellido, :email, :password, :rolId, :activo, :fechaAlta)";
+		String sql = "INSERT INTO Usuario (Nombre, Apellido, Email, Password, RolId, Activo, FechaAlta) VALUES (:nombre, :apellido, :email, :password, :rolId, :activo, :fechaAlta)";
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("nombre", usuario.getNombre());
 		params.put("apellido", usuario.getApellido());
@@ -38,7 +38,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
 	@Override
 	public List<Usuario> listarUsuarios() {
-		String sql = "SELECT * FROM Usuarios";
+		String sql = "SELECT * FROM Usuario  WHERE Aprobado  = true";
 		Map<String, Object> params = new HashMap<String, Object>();
 		List<Usuario> result = jdbcTemplate.query(sql, params, new UsuarioMapper());
 		return result;
@@ -46,15 +46,27 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		
 	@Override
 	public List<Usuario> listarUsuariosInactivos() {
-		String sql = "SELECT * FROM Usuarios WHERE Activo = false";
+		String sql = "SELECT * FROM Usuario WHERE Activo = false";
 		Map<String, Object> params = new HashMap<String, Object>();
 		List<Usuario> result = jdbcTemplate.query(sql, params, new UsuarioMapper());
 		return result;
 	}
+	
+	@Override
+	public List<Usuario> listarPendientes() {
+		String sql = "SELECT * FROM Usuario WHERE Aprobado  = false";
+		Map<String, Object> params = new HashMap<String, Object>();
+		List<Usuario> result = jdbcTemplate.query(sql, params, new UsuarioMapper());
+		return result;
+	}
+	
+	
+	
+	
 		
 	@Override
 	public void eliminarUsuario(Integer usuarioId) {
-		String sql = "UPDATE Usuarios SET Activo = false WHERE usuarioId LIKE :usuarioId";
+		String sql = "UPDATE Usuario SET Activo = false WHERE usuarioId LIKE :usuarioId";
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("usuarioId", usuarioId);
 		jdbcTemplate.update(sql, params);	
@@ -63,9 +75,17 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	@Override
 	public void activarUsuario(Integer usuarioId, Boolean activo) {	
 		activo = true;
-		String sql = "UPDATE Usuarios SET Activo = :activo, FechaAlta = CURDATE() WHERE UsuarioId = :usuarioId";
+		String sql = "UPDATE Usuario SET Activo = :activo, FechaAlta = CURDATE() WHERE UsuarioId = :usuarioId";
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("activo", activo);
+		params.put("usuarioId", usuarioId);
+		jdbcTemplate.update(sql, params);		
+	}
+	
+	@Override
+	public void aprobarUsuario(Integer usuarioId) {			
+		String sql = "UPDATE Usuario SET Activo = true , Aprobado = true  WHERE UsuarioId = :usuarioId";
+		Map<String, Object> params = new HashMap<String, Object>();		
 		params.put("usuarioId", usuarioId);
 		jdbcTemplate.update(sql, params);		
 	}
@@ -74,7 +94,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
       public Usuario buscarUsuario(String email, String password) {
 		
 		try{
-		String sql = "SELECT * FROM Usuarios WHERE email = " + email + " AND Password = "+ password +"";
+		String sql = "SELECT * FROM Usuario WHERE email = " + email + " AND Password = "+ password +"";
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("email", email);
 		params.put("password", password);
@@ -92,7 +112,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	@Override
 	public Usuario crearSesion(String email, String password){
 	
-		String sql = "SELECT * FROM Usuarios WHERE Email = '" + email + "' AND Password = '" + password + "' AND activo = :activo";
+		String sql = "SELECT * FROM Usuario WHERE Email = '" + email + "' AND Password = '" + password + "' AND activo = :activo";
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("usuario", email);
 		params.put("password", password);
@@ -123,7 +143,9 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			usuario.setPassword(rs.getString("password"));
 			usuario.setRolId(rs.getInt("rolId"));
 			usuario.setActivo(rs.getBoolean("activo"));
+			usuario.setAprobado(rs.getBoolean("aprobado"));
 			usuario.setFechaAlta(rs.getDate("fechaAlta"));
+			
 			return usuario;
 		}
 	}

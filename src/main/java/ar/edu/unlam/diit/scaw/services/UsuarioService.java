@@ -12,6 +12,8 @@ public interface UsuarioService {
 
 	public List<Usuario> listarUsuarios();
 	
+	public List<Usuario> listarPendientes();
+	
 	public void eliminarUsuario(Integer usuarioId);
 	
 	public void activarUsuario(Integer usuarioId, Boolean activo);
@@ -21,4 +23,7 @@ public interface UsuarioService {
 	public Usuario crearSesion(String email, String password);
 	
 	public List<Usuario> listarUsuariosInactivos();
+	
+	public void aprobarUsuario(Integer usuarioId);
+	
 }

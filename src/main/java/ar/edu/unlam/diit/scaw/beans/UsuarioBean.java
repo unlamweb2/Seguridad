@@ -30,6 +30,7 @@ public class UsuarioBean implements Serializable {
 	private Integer rolId = 2;
 	private Boolean activo = false;
 	private Date fechaAlta = new Date();
+	private Boolean aprobado = false;
 
 	ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"beans.xml"});
 	UsuarioService service = (UsuarioService) context.getBean("usuarioService");
@@ -49,6 +50,12 @@ public class UsuarioBean implements Serializable {
 	    
 			return list;
 	}
+       
+       public List<Usuario> listarPendientes() {
+   		List<Usuario> list = service.listarPendientes();
+   	    
+   			return list;
+   	}
 	
 	public List<Usuario> listarUsuariosInactivos() {
 		List<Usuario> list = service.listarUsuariosInactivos();
@@ -65,6 +72,14 @@ public class UsuarioBean implements Serializable {
 		activo = false;
 		if (activo == false) {
 			service.activarUsuario(usuarioId, activo);				
+		}
+		return "usuarios";
+	}
+	
+	public String AprobarUsuario(Integer usuarioId, Boolean activo) {
+		activo = false;
+		if (activo == false) {
+			service.aprobarUsuario(usuarioId);				
 		}
 		return "usuarios";
 	}
@@ -107,11 +122,12 @@ public class UsuarioBean implements Serializable {
 		usuario.setRolId(this.rolId);
 		usuario.setActivo(this.activo);
 		usuario.setFechaAlta(this.fechaAlta);
+		usuario.setAprobado(this.aprobado);
 		
 		return usuario;
 	}
 
-	public UsuarioBean(String nombre, String apellido, String email, String password, Integer rolId, Boolean activo, Date fechaAlta) {
+	public UsuarioBean(String nombre, String apellido, String email, String password, Integer rolId, Boolean activo, Date fechaAlta, Boolean aprobado) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -120,6 +136,7 @@ public class UsuarioBean implements Serializable {
 		this.rolId = rolId;
 		this.activo = activo;
 		this.fechaAlta = fechaAlta;
+		this.aprobado = aprobado;
 	}
 	
 	public String getNombre() {
@@ -168,7 +185,7 @@ public class UsuarioBean implements Serializable {
 	
 	public void setActivo(Boolean activo) {
 		this.activo = activo;
-	}
+	}	
 	
 	public Date getFechaAlta() {
 		return fechaAlta;
@@ -176,6 +193,14 @@ public class UsuarioBean implements Serializable {
 	
 	public void setFechaAlta(Date fechaAlta) {
 		this.fechaAlta = fechaAlta;
+	}
+	
+	public Boolean getAprobado() {
+		return aprobado;
+	}
+	
+	public void setAprobado(Boolean aprobado) {
+		this.aprobado = aprobado;
 	}
 	
 }

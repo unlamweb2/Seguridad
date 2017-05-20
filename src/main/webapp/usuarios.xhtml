@@ -17,13 +17,15 @@
 
 	<h:body>
 		
-		<f:metadata>
+		  <f:metadata>
     		<f:event type="preRenderView" listener="#{usuarioBean.verificarSesion}" />
 		</f:metadata>
 		
+		
+		
 	    <ui:include src="/header.xhtml" />
 	    
-	    <h2 class="text-center">Lista de Usuarios</h2>
+	    <h2 class="text-center">Usuarios Aprobados</h2>
 	    <h:form>
 			<center><h:dataTable value="#{usuarioBean.listarUsuarios()}" var="usuario" styleClass="order-table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row">
 		
@@ -65,9 +67,58 @@
 			   		<f:facet name="header">Acción</f:facet>
 		    		<h:commandButton value="Eliminar" action="#{usuarioBean.eliminarUsuario(usuario.usuarioId)}" class="btn btn-danger" rendered="#{usuario.usuarioId != sessionScope.usuario.usuarioId and usuario.activo == true}"></h:commandButton>
 			    	<h:commandButton value="Activar" action="#{usuarioBean.activarUsuario(usuario.usuarioId, usuario.activo)}" class="btn btn-info" rendered="#{usuario.activo == false}"></h:commandButton>
-			   	</h:column>     
-		     	       
-			</h:dataTable></center>
+			   	</h:column> 
+			</h:dataTable></center>	
 		</h:form>
+		
+		 <h2 class="text-center">Usuarios Pendientes de Aprobar</h2>
+	    <h:form>
+			<center><h:dataTable value="#{usuarioBean.listarPendientes()}" var="usuario" styleClass="order-table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row">
+		
+				<h:column>
+					<f:facet name="header">ID</f:facet>    				
+		      		#{usuario.usuarioId}
+		  		</h:column>
+				<h:column>
+					<f:facet name="header">Nombre</f:facet>    				
+		      		#{usuario.nombre}
+		  		</h:column>
+				<h:column>
+					<f:facet name="header">Apellido</f:facet>
+		      		#{usuario.apellido}
+		   		</h:column>
+				<h:column>
+					<f:facet name="header">Email</f:facet>
+		    	  	#{usuario.email}
+			   	</h:column>
+			   	<h:column>
+					<f:facet name="header">Password</f:facet>
+		    	  	#{usuario.password}
+			   	</h:column>
+			   	
+			   	<h:column>
+					<f:facet name="header">Rol</f:facet>
+		    	  	<h:outputLabel value="Administrador" rendered="#{usuario.rolId == 1}" />
+					<h:outputLabel value="Usuario" rendered="R#{usuario.rolId == 2}" />
+			   	</h:column>		   		 
+			 
+			   	<h:column>
+					<f:facet name="header">Fecha Alta</f:facet>
+		    	  	#{usuario.fechaAlta}
+			   	</h:column>
+			   	
+				<h:column>
+					<f:facet name="header">Aprobado</f:facet>		    	  
+		    	    <h:outputLabel value="Si" rendered="#{usuario.aprobado == true}" />
+					<h:outputLabel value="No" rendered="#{usuario.aprobado == false}" />
+			   	</h:column>
+			   	
+			   	<h:column>
+			   		<f:facet name="header">Acción</f:facet>		    		
+			    	<h:commandButton value="Habilitar" action="#{usuarioBean.AprobarUsuario(usuario.usuarioId, usuario.aprobado)}" class="btn btn-info" rendered="#{usuario.aprobado == false}"></h:commandButton>
+			   	</h:column> 
+			</h:dataTable></center>	
+		</h:form>
+		
 	</h:body>
 </html>

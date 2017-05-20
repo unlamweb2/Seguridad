@@ -13,10 +13,11 @@ public class Usuario implements Serializable {
 	private String email;
 	private String password;
 	private Integer rolId;
-	private Boolean activo;
+	private Boolean activo;	 	
 	private Date fechaAlta = new Date();
+	private Boolean aprobado;
 
-	public Usuario(String nombre, String apellido, String email, String password, Integer rolId, Boolean activo, Date fechaAlta){
+	public Usuario(String nombre, String apellido, String email, String password, Integer rolId, Boolean activo, Date fechaAlta, Boolean aprobado){
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.email = email;
@@ -24,6 +25,7 @@ public class Usuario implements Serializable {
 		this.rolId = rolId;
 		this.activo = activo;
 		this.fechaAlta = fechaAlta;
+		this.aprobado= aprobado;
 	}
 	
 	public Usuario() {
@@ -92,4 +94,13 @@ public class Usuario implements Serializable {
 	public void setFechaAlta(Date fechaAlta) {
 		this.fechaAlta = fechaAlta;
 	}
+	
+	public Boolean getAprobado() {
+		return aprobado;
+	}
+	
+	public void setAprobado(Boolean aprobado) {
+		this.aprobado = aprobado;
+	}
+	
 }
