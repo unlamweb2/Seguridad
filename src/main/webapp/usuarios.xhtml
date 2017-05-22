@@ -20,14 +20,13 @@
 		  <f:metadata>
     		<f:event type="preRenderView" listener="#{usuarioBean.verificarSesion}" />
 		</f:metadata>
-		
-		
+			
 		
 	    <ui:include src="/header.xhtml" />
 	    
 	    <h2 class="text-center">Usuarios Aprobados</h2>
 	    <h:form>
-			<center><h:dataTable value="#{usuarioBean.listarUsuarios()}" var="usuario" styleClass="order-table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row">
+			<center><h:dataTable value="#{usuarioBean.listarUsuarios()}" var="usuario" styleClass="table order-table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row">
 		
 				<h:column>
 					<f:facet name="header">ID</f:facet>    				
@@ -65,16 +64,17 @@
 			   	</h:column>
 			   	<h:column>
 			   		<f:facet name="header">Acción</f:facet>
+			   		<h:commandButton value="Modificar" action="#{usuarioBean.activarUsuario(usuario.usuarioId, usuario.activo)}" class="btn btn-info" rendered="#{usuario.activo == false}"></h:commandButton>
 		    		<h:commandButton value="Eliminar" action="#{usuarioBean.eliminarUsuario(usuario.usuarioId)}" class="btn btn-danger" rendered="#{usuario.usuarioId != sessionScope.usuario.usuarioId and usuario.activo == true}"></h:commandButton>
-			    	<h:commandButton value="Activar" action="#{usuarioBean.activarUsuario(usuario.usuarioId, usuario.activo)}" class="btn btn-info" rendered="#{usuario.activo == false}"></h:commandButton>
+			    	<h:commandButton value="Activar" action="#{usuarioBean.activarUsuario(usuario.usuarioId, usuario.activo)}" class="btn btn-info" rendered="#{usuario.activo == false}"></h:commandButton>			    	
 			   	</h:column> 
 			</h:dataTable></center>	
 		</h:form>
 		
+		 <div class="form-group">
 		 <h2 class="text-center">Usuarios Pendientes de Aprobar</h2>
 	    <h:form>
-			<center><h:dataTable value="#{usuarioBean.listarPendientes()}" var="usuario" styleClass="order-table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row">
-		
+			<center><h:dataTable value="#{usuarioBean.listarPendientes()}" var="usuario" styleClass="table order-table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row">		
 				<h:column>
 					<f:facet name="header">ID</f:facet>    				
 		      		#{usuario.usuarioId}
@@ -99,7 +99,7 @@
 			   	<h:column>
 					<f:facet name="header">Rol</f:facet>
 		    	  	<h:outputLabel value="Administrador" rendered="#{usuario.rolId == 1}" />
-					<h:outputLabel value="Usuario" rendered="R#{usuario.rolId == 2}" />
+					<h:outputLabel value="Usuario" rendered="#{usuario.rolId == 2}" />
 			   	</h:column>		   		 
 			 
 			   	<h:column>
@@ -119,6 +119,7 @@
 			   	</h:column> 
 			</h:dataTable></center>	
 		</h:form>
+		</div>
 		
 	</h:body>
 </html>

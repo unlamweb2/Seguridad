@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	>
+
+	<h:head>
+		<title>Seguridad</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/estilos.css" />
+	</h:head>
+
+	<h:body>
+		<f:metadata>
+    		<f:event type="preRenderView" listener="#{usuarioBean.verificarSesion}" />
+		</f:metadata>
+	
+		<ui:include src="/header.xhtml" />
+		
+		<h2 class="text-center">Editar Usuario</h2>
+		<div class="text-center">
+			<h:form id="formId" name="formId">
+				<div class="col-xs-6 col-xs-offset-3">
+					<center><h:panelGrid columns="2" border="0">							
+						<h:outputLabel for="UsuarioId">usuarioId:</h:outputLabel>
+						<h:outputText value="#{usuarioBean.UsuarioId}" id="usuarioId" name="formId:usuarioId"></h:outputText>
+																		
+						<h:outputLabel for="nombre">Nombre:</h:outputLabel>
+						<h:inputText value="#{usuarioBean.nombre}" id="nombre"></h:inputText>
+						
+					    <h:outputLabel for="apellido">Apellido:</h:outputLabel>
+						<h:inputText value="#{usuarioBean.apellido}" id="apellido"></h:inputText>
+						
+						<h:outputLabel for="email">Email:</h:outputLabel>
+						<h:inputText value="#{usuarioBean.email}" id="email"></h:inputText>
+						
+					    <h:outputLabel for="rol">Rol:</h:outputLabel>
+						<h:selectOneMenu value = "#{usuarioBean.rol}"> 
+				   			<f:selectItem itemValue = "1" itemLabel = "Administrador" /> 
+				   			<f:selectItem itemValue = "2" itemLabel = "Usuario" /> 
+						</h:selectOneMenu>
+						
+					    <h:outputLabel for="rol">Activo:</h:outputLabel>
+						<h:selectOneMenu value = "#{usuarioBean.activo}"> 
+				   			<f:selectItem itemValue = "true" itemLabel = "Si" /> 
+				   			<f:selectItem itemValue = "false" itemLabel = "No" /> 
+						</h:selectOneMenu>
+						
+						 <h:outputLabel for="fecha">Fecha Alta:</h:outputLabel>
+						<h:inputText value="#{usuarioBean.fechaAlta}" id="fechaAlta"></h:inputText>
+					</h:panelGrid>
+					<br></br>
+					<h:commandButton value="Guardar cambios" action="#{tareaBean.actualizarTarea(tareaBean.titulo, tareaBean.descripcion, tareaBean.privacidad, tareaBean.tipoTarea, tareaBean.estadoId)}" class="btn btn-primary"></h:commandButton>				
+					<h:link value="Atrás" outcome="tareas" class="btn btn-default"/></center>
+				</div>
+			</h:form>
+		</div>
+	</h:body>
+</html>

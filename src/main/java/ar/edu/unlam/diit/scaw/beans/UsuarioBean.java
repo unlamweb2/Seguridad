@@ -23,6 +23,7 @@ public class UsuarioBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	private Integer usuarioId = null;
 	private String nombre = null;
 	private String apellido = null;
 	private String email = null;
@@ -84,6 +85,18 @@ public class UsuarioBean implements Serializable {
 		return "usuarios";
 	}
 	
+	public String editarUsuario(Integer usuarioId , String nombre, String apellido, String email, String password, Integer rolId, Boolean activo, Date fechaAlta) {		
+		
+		
+		this.setTareaId(tareaId);
+		this.setTitulo(titulo);
+		this.setDescripcion(descripcion);
+		this.setPrivacidad(privacidad);
+		this.setTipoTarea(tipoTarea);
+		this.setEstadoId(estadoId);
+		return "editarTarea";
+	}
+	
 	public String login(String email, String password) {
         Usuario usuario = service.crearSesion(email, password);
         FacesContext context = FacesContext.getCurrentInstance();
@@ -137,6 +150,14 @@ public class UsuarioBean implements Serializable {
 		this.activo = activo;
 		this.fechaAlta = fechaAlta;
 		this.aprobado = aprobado;
+	}
+	
+	public Integer getUsuarioId(){
+		return usuarioId;
+	}
+	
+	public void setUsuarioId(Integer usuarioId){
+		this.usuarioId = usuarioId;
 	}
 	
 	public String getNombre() {
